@@ -101,13 +101,13 @@
       <Project>{48e84326-0934-4c2c-9ae8-88a08674bf25}</Project>
       <Name>Schedular.Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Schedular.Utilities\Schedular.Utilities.csproj">
-      <Project>{e77100de-dccd-44c6-a32a-de248333ae55}</Project>
-      <Name>Schedular.Utilities</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Schedular.ViewModels\Schedular.ViewModels.csproj">
       <Project>{360f0e09-20c2-46c0-9034-c94fa02683e7}</Project>
       <Name>Schedular.ViewModels</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Shedular.Utilities\Shedular.Utilities.csproj">
+      <Project>{0ce94a99-9954-4a74-961a-32682e018522}</Project>
+      <Name>Shedular.Utilities</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -68,8 +68,8 @@ namespace Schedular.Business
 
             var schedule = new CourseSchedule
             {
-                Teacher = teacher,  
-                Course = course,    
+                Teacher = teacher,
+                Course = course,
                 Term = addCourse.Term,
                 ClassGroup = addCourse.ClassGroup,
                 DayOfWeek = addCourse.DayOfWeek,
@@ -80,6 +80,11 @@ namespace Schedular.Business
 
             _uow.CourseScheduleRepository.AddCourse(schedule);
 
+            _uow.Save();
+        }
+        public void RemoveCourse(int courseId)
+        {
+            _uow.CourseScheduleRepository.RemoveCourse(courseId);
             _uow.Save();
         }
     }

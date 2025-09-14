@@ -44,7 +44,26 @@ namespace Schedular.App.Forms
 
         private void btnRemoveClass_Click(object sender, EventArgs e)
         {
-
+            if(dgvSchedules.CurrentRow != null)
+            {
+                var course = new
+                {
+ 
+                    Title = dgvSchedules.CurrentRow.Cells[1].Value.ToString(),
+                    TeacherName = dgvSchedules.CurrentRow.Cells[3].Value.ToString(),
+                };
+                if(MessageBox.Show($"آیا از حذف درس {course.Title} با استاد {course.TeacherName} اطمینان دارید؟", "توجه", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                {
+                    int courseID = int.Parse(dgvSchedules.CurrentRow.Cells[0].Value.ToString());
+                    var service = new CourseService();
+                    service.RemoveCourse(courseID);
+                    BindGrid();
+                }
+            }
+            else
+            {
+                MessageBox.Show("لطفا یک کلاس را انتخاب کنید", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void btnRefresh_Click(object sender, EventArgs e)
