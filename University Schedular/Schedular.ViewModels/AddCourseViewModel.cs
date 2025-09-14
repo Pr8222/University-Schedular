@@ -15,7 +15,7 @@ namespace Schedular.ViewModels
         public int Units { get; set; }
         public int Capacity { get; set; }
         public string DayOfWeek { get; set; }
-        public string StartTime { get; set; }
-        public string EndTime { get; set; }
+        public Nullable<System.TimeSpan> StartTime { get; set; }
+        public Nullable<System.TimeSpan> EndTime { get; set; }
     }
 }

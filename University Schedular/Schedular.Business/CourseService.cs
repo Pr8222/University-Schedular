@@ -41,27 +41,42 @@ namespace Schedular.Business
         }
         public void AddSchedule(AddCourseViewModel addCourse)
         {
-            if (_uow.TeacherRepository.GetTeacherByName(addCourse.TeacherName) == null)
+            var teacher = _uow.TeacherRepository.GetTeacherByName(addCourse.TeacherName);
+            if (teacher == null)
             {
-                var newTeacher = new Teacher
+                teacher = new Teacher
                 {
                     FullName = addCourse.TeacherName
                 };
-                _uow.TeacherRepository.AddTeacher(newTeacher);
-                _uow.Save();
+                _uow.TeacherRepository.AddTeacher(teacher);
             }
 
-            if (_uow.CourseRepository.GetCourseByName(addCourse.CourseTitle) == null)
+            var course = _uow.CourseRepository.GetCourseByTitle(addCourse.CourseTitle);
+            if (course == null)
             {
-                var newCourse = new Course
+                course = new Course
                 {
                     Title = addCourse.CourseTitle,
                     Units = addCourse.Units
                 };
-                _uow.CourseRepository.AddCourse(newCourse);
-                _uow.Save();
-
+                _uow.CourseRepository.AddCourse(course);
             }
+
+            var schedule = new CourseSchedule
+            {
+                Teacher = teacher,  
+                Course = course,    
+                Term = addCourse.Term,
+                ClassGroup = addCourse.ClassGroup,
+                DayOfWeek = addCourse.DayOfWeek,
+                StartTime = addCourse.StartTime,
+                EndTime = addCourse.EndTime,
+                Capacity = addCourse.Capacity
+            };
+
+            _uow.CourseScheduleRepository.AddCourse(schedule);
+
+            _uow.Save();
         }
     }
 }
