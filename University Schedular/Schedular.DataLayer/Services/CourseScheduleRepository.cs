@@ -84,11 +84,13 @@ namespace Schedular.DataLayer.Services
 
         public IEnumerable<CourseSchedule> GetCoursesByFilter(string parameter)
         {
-            return db.CourseSchedule.Include(cs => cs.Course).Include(cs => cs.Teacher).Where(cs => cs.Course.Title.Contains(parameter) || 
-            cs.Teacher.FullName.Contains(parameter) || 
+            return db.CourseSchedule.Include(cs => cs.Course)
+                .Include(cs => cs.Teacher)
+                .Where(cs => cs.Course.Title.Contains(parameter) ||
+            cs.Teacher.FullName.Contains(parameter) ||
             cs.Term.Contains(parameter) ||
             cs.ClassGroup.Contains(parameter) ||
-            cs.DayOfWeek.Contains(parameter));
+            cs.DayOfWeek.Contains(parameter)).ToList();
         }
     }
 }

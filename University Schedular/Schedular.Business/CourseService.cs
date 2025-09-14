@@ -87,5 +87,25 @@ namespace Schedular.Business
             _uow.CourseScheduleRepository.RemoveCourse(courseId);
             _uow.Save();
         }
+
+        public List<CourseScheduleViewModel> SearchCourseSchedule(string searchTxt)
+        {
+           var schdules = _uow.CourseScheduleRepository.GetCoursesByFilter(searchTxt);
+           var result = schdules.Select(cs =>  new CourseScheduleViewModel
+           {
+               Id = cs.ID,
+               CourseTitle = cs.Course.Title,
+               Units = cs.Course.Units,
+               TeacherName = cs.Teacher.FullName,
+               Term = cs.Term,
+               ClassGroup = cs.ClassGroup,
+               DayOfWeek = cs.DayOfWeek,
+               StartTime = cs.StartTime.ToString(),
+               EndTime = cs.EndTime.ToString(),
+               Capacity = cs.Capacity.Value,
+           }).ToList();
+
+            return result;
+        }
     }
 }
