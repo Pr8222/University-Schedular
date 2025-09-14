@@ -122,5 +122,8 @@
   <ItemGroup>
     <None Include="Resources\icons-refresh.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete-same-term-courses.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

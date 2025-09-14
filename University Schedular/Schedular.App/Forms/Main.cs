@@ -51,5 +51,10 @@ namespace Schedular.App.Forms
         {
             BindGrid();
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
