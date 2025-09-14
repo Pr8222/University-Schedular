@@ -31,7 +31,10 @@ namespace Schedular.App.Forms
         private void btnAddCourse_Click(object sender, EventArgs e)
         {
             frmAddCourse frmAdd = new frmAddCourse();
-            frmAdd.ShowDialog();
+            if(frmAdd.ShowDialog() == DialogResult.OK)
+            {
+                BindGrid();
+            }
         }
 
         private void btnEditCourse_Click(object sender, EventArgs e)
@@ -42,6 +45,11 @@ namespace Schedular.App.Forms
         private void btnRemoveClass_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            BindGrid();
         }
     }
 }

@@ -41,7 +41,8 @@ namespace Schedular.Business
         }
         public void AddSchedule(AddCourseViewModel addCourse)
         {
-            var teacher = _uow.TeacherRepository.GetTeacherByName(addCourse.TeacherName);
+            var teacherList = _uow.TeacherRepository.GetTeachers();
+            var teacher = teacherList.FirstOrDefault(t => t.FullName.Equals(addCourse.TeacherName, StringComparison.OrdinalIgnoreCase));
             if (teacher == null)
             {
                 teacher = new Teacher
@@ -49,9 +50,11 @@ namespace Schedular.Business
                     FullName = addCourse.TeacherName
                 };
                 _uow.TeacherRepository.AddTeacher(teacher);
+                _uow.Save();
             }
 
-            var course = _uow.CourseRepository.GetCourseByTitle(addCourse.CourseTitle);
+            var courseList = _uow.CourseRepository.GetCourses();
+            var course = courseList.FirstOrDefault(c => c.Title.Equals(addCourse.CourseTitle, StringComparison.OrdinalIgnoreCase));
             if (course == null)
             {
                 course = new Course
@@ -60,6 +63,7 @@ namespace Schedular.Business
                     Units = addCourse.Units
                 };
                 _uow.CourseRepository.AddCourse(course);
+                _uow.Save();
             }
 
             var schedule = new CourseSchedule

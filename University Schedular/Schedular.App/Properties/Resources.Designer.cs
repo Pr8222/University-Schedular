@@ -83,6 +83,16 @@ namespace Schedular.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap refresh_shedule {
+            get {
+                object obj = ResourceManager.GetObject("refresh_shedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap remove_course {
             get {
                 object obj = ResourceManager.GetObject("remove_course", resourceCulture);

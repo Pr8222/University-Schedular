@@ -25,10 +25,20 @@ namespace Schedular.App.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var schedule = new 
+            var service = new CourseService();
+            service.AddSchedule(new ViewModels.AddCourseViewModel
             {
-
-            };
+                CourseTitle = txtCourseTitle.Text,
+                Term = txtTerm.Text,
+                TeacherName = txtTeacherName.Text,
+                ClassGroup = txtClassGroup.Text,
+                Units  = int.Parse(txtUnits.Text),
+                Capacity = int.Parse(txtCapacity.Text),
+                DayOfWeek = comboBoxDayOfWeek.Text,
+                StartTime = TimeSpan.Parse(maskedTextStartTime.Text),
+                EndTime = TimeSpan.Parse(maskedTextEndTime.Text)
+            });
+            DialogResult = DialogResult.OK;
         }
     }
 }

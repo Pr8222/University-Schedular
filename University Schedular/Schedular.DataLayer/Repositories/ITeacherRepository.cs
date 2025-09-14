@@ -11,7 +11,6 @@ namespace Schedular.DataLayer.Repositories
         List<Teacher> GetTeachers();
 
         Teacher GetTeacherById(int teacherId);
-        Teacher GetTeacherByName(string teacherName);
         bool AddTeacher(Teacher teacher);
         bool UpdateTeacher(Teacher teacher);
         bool RemoveTeacher(Teacher teacher);

@@ -23,11 +23,6 @@ namespace Schedular.DataLayer.Services
         {
             return db.Course.Find(courseId);
         }
-        public Course GetCourseByTitle(string courseTitle)
-        {
-            return db.Course.Find(courseTitle);
-        }
-
         
         public bool AddCourse(Course course)
         {

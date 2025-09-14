@@ -32,6 +32,7 @@
             this.btnAddCourse = new System.Windows.Forms.ToolStripButton();
             this.btnEditCourse = new System.Windows.Forms.ToolStripButton();
             this.btnRemoveClass = new System.Windows.Forms.ToolStripButton();
+            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.dgvSchedules = new System.Windows.Forms.DataGridView();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +54,8 @@
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnAddCourse,
             this.btnEditCourse,
-            this.btnRemoveClass});
+            this.btnRemoveClass,
+            this.btnRefresh});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(806, 75);
@@ -96,6 +98,18 @@
             this.btnRemoveClass.Text = "حذف کلاس";
             this.btnRemoveClass.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btnRemoveClass.Click += new System.EventHandler(this.btnRemoveClass_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnRefresh.Image = global::Schedular.App.Properties.Resources.refresh_shedule;
+            this.btnRefresh.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(76, 72);
+            this.btnRefresh.Text = "بروزرسانی";
+            this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // dgvSchedules
             // 
@@ -227,5 +241,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.ToolStripButton btnRefresh;
     }
 }

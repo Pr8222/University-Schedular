@@ -10,7 +10,6 @@ namespace Schedular.DataLayer.Repositories
     {
         List<Course> GetCourses();
         Course GetCourseById(int courseId);
-        Course GetCourseByTitle(string courseTitle);
         bool AddCourse(Course course);
         bool UpdateCourse(Course course);
         bool DeleteCourse(Course course);

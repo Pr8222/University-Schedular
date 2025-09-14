@@ -15,11 +15,6 @@ namespace Schedular.DataLayer.Services
         {
             db = context;
         }
-        public Teacher GetTeacherByName(string teacherName)
-        {
-            return db.Teacher.Find(teacherName);
-        }
-
         public Teacher GetTeacherById(int teacherId)
         {
             return db.Teacher.Find(teacherId);
