@@ -134,5 +134,8 @@
   <ItemGroup>
     <None Include="Resources\delete-same-term-courses.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\save-schedule.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

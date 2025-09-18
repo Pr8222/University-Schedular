@@ -30,11 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainPage));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.btnAddCourse = new System.Windows.Forms.ToolStripButton();
-            this.btnEditCourse = new System.Windows.Forms.ToolStripButton();
-            this.btnRemoveClass = new System.Windows.Forms.ToolStripButton();
-            this.btnRemoveSameTerms = new System.Windows.Forms.ToolStripButton();
-            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
             this.dgvSchedules = new System.Windows.Forms.DataGridView();
@@ -48,6 +43,12 @@
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnAddCourse = new System.Windows.Forms.ToolStripButton();
+            this.btnEditCourse = new System.Windows.Forms.ToolStripButton();
+            this.btnRemoveClass = new System.Windows.Forms.ToolStripButton();
+            this.btnRemoveSameTerms = new System.Windows.Forms.ToolStripButton();
+            this.btnRefresh = new System.Windows.Forms.ToolStripButton();
+            this.btnSaveSchedule = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSchedules)).BeginInit();
             this.SuspendLayout();
@@ -61,72 +62,14 @@
             this.btnRemoveClass,
             this.btnRemoveSameTerms,
             this.btnRefresh,
+            this.btnSaveSchedule,
             this.toolStripLabel1,
             this.txtSearch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(806, 77);
+            this.toolStrip1.Size = new System.Drawing.Size(924, 77);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
-            // 
-            // btnAddCourse
-            // 
-            this.btnAddCourse.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddCourse.Image = global::Schedular.App.Properties.Resources.add_course;
-            this.btnAddCourse.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnAddCourse.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnAddCourse.Name = "btnAddCourse";
-            this.btnAddCourse.Size = new System.Drawing.Size(123, 74);
-            this.btnAddCourse.Text = "اضافه کردن کلاس";
-            this.btnAddCourse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnAddCourse.Click += new System.EventHandler(this.btnAddCourse_Click);
-            // 
-            // btnEditCourse
-            // 
-            this.btnEditCourse.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditCourse.Image = global::Schedular.App.Properties.Resources.edit_course;
-            this.btnEditCourse.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnEditCourse.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnEditCourse.Name = "btnEditCourse";
-            this.btnEditCourse.Size = new System.Drawing.Size(96, 74);
-            this.btnEditCourse.Text = "ویرایش کلاس";
-            this.btnEditCourse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEditCourse.ToolTipText = "نمایش کلاس‌ها";
-            this.btnEditCourse.Click += new System.EventHandler(this.btnEditCourse_Click);
-            // 
-            // btnRemoveClass
-            // 
-            this.btnRemoveClass.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRemoveClass.Image = global::Schedular.App.Properties.Resources.remove_course;
-            this.btnRemoveClass.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnRemoveClass.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRemoveClass.Name = "btnRemoveClass";
-            this.btnRemoveClass.Size = new System.Drawing.Size(84, 74);
-            this.btnRemoveClass.Text = "حذف کلاس";
-            this.btnRemoveClass.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRemoveClass.Click += new System.EventHandler(this.btnRemoveClass_Click);
-            // 
-            // btnRemoveSameTerms
-            // 
-            this.btnRemoveSameTerms.Image = global::Schedular.App.Properties.Resources.delete_same_term_courses;
-            this.btnRemoveSameTerms.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnRemoveSameTerms.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRemoveSameTerms.Name = "btnRemoveSameTerms";
-            this.btnRemoveSameTerms.Size = new System.Drawing.Size(187, 74);
-            this.btnRemoveSameTerms.Text = "حذف کلاس‌های ترم مشخص";
-            this.btnRemoveSameTerms.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Font = new System.Drawing.Font("Tahoma", 9F);
-            this.btnRefresh.Image = global::Schedular.App.Properties.Resources.refresh_shedule;
-            this.btnRefresh.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(76, 74);
-            this.btnRefresh.Text = "بروزرسانی";
-            this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // toolStripLabel1
             // 
@@ -162,7 +105,7 @@
             this.dgvSchedules.Name = "dgvSchedules";
             this.dgvSchedules.RowHeadersWidth = 51;
             this.dgvSchedules.RowTemplate.Height = 24;
-            this.dgvSchedules.Size = new System.Drawing.Size(806, 401);
+            this.dgvSchedules.Size = new System.Drawing.Size(924, 401);
             this.dgvSchedules.TabIndex = 1;
             // 
             // Column1
@@ -235,11 +178,80 @@
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
             // 
+            // btnAddCourse
+            // 
+            this.btnAddCourse.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddCourse.Image = global::Schedular.App.Properties.Resources.add_course;
+            this.btnAddCourse.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnAddCourse.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAddCourse.Name = "btnAddCourse";
+            this.btnAddCourse.Size = new System.Drawing.Size(123, 74);
+            this.btnAddCourse.Text = "اضافه کردن کلاس";
+            this.btnAddCourse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnAddCourse.Click += new System.EventHandler(this.btnAddCourse_Click);
+            // 
+            // btnEditCourse
+            // 
+            this.btnEditCourse.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditCourse.Image = global::Schedular.App.Properties.Resources.edit_course;
+            this.btnEditCourse.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnEditCourse.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEditCourse.Name = "btnEditCourse";
+            this.btnEditCourse.Size = new System.Drawing.Size(96, 74);
+            this.btnEditCourse.Text = "ویرایش کلاس";
+            this.btnEditCourse.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEditCourse.ToolTipText = "نمایش کلاس‌ها";
+            this.btnEditCourse.Click += new System.EventHandler(this.btnEditCourse_Click);
+            // 
+            // btnRemoveClass
+            // 
+            this.btnRemoveClass.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveClass.Image = global::Schedular.App.Properties.Resources.remove_course;
+            this.btnRemoveClass.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnRemoveClass.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRemoveClass.Name = "btnRemoveClass";
+            this.btnRemoveClass.Size = new System.Drawing.Size(84, 74);
+            this.btnRemoveClass.Text = "حذف کلاس";
+            this.btnRemoveClass.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRemoveClass.Click += new System.EventHandler(this.btnRemoveClass_Click);
+            // 
+            // btnRemoveSameTerms
+            // 
+            this.btnRemoveSameTerms.Image = global::Schedular.App.Properties.Resources.delete_same_term_courses;
+            this.btnRemoveSameTerms.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnRemoveSameTerms.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRemoveSameTerms.Name = "btnRemoveSameTerms";
+            this.btnRemoveSameTerms.Size = new System.Drawing.Size(187, 74);
+            this.btnRemoveSameTerms.Text = "حذف کلاس‌های ترم مشخص";
+            this.btnRemoveSameTerms.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.Font = new System.Drawing.Font("Tahoma", 9F);
+            this.btnRefresh.Image = global::Schedular.App.Properties.Resources.refresh_shedule;
+            this.btnRefresh.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnRefresh.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(76, 74);
+            this.btnRefresh.Text = "بروزرسانی";
+            this.btnRefresh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
+            // 
+            // btnSaveSchedule
+            // 
+            this.btnSaveSchedule.Image = global::Schedular.App.Properties.Resources.save_schedule;
+            this.btnSaveSchedule.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnSaveSchedule.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnSaveSchedule.Name = "btnSaveSchedule";
+            this.btnSaveSchedule.Size = new System.Drawing.Size(116, 74);
+            this.btnSaveSchedule.Text = "ذخیره برنامه‌ریزی";
+            this.btnSaveSchedule.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
             // frmMainPage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(806, 478);
+            this.ClientSize = new System.Drawing.Size(924, 478);
             this.Controls.Add(this.dgvSchedules);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
@@ -276,5 +288,6 @@
         private System.Windows.Forms.ToolStripButton btnRemoveSameTerms;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripTextBox txtSearch;
+        private System.Windows.Forms.ToolStripButton btnSaveSchedule;
     }
 }
