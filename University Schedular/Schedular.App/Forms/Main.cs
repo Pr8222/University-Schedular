@@ -39,7 +39,24 @@ namespace Schedular.App.Forms
         //Opening the edit form to update a schedule
         private void btnEditCourse_Click(object sender, EventArgs e)
         {
-
+            CourseScheduleViewModel selectedModel = new CourseScheduleViewModel()
+            {
+                Id = int.Parse(dgvSchedules.CurrentRow.Cells[0].Value.ToString()),
+                CourseTitle = dgvSchedules.CurrentRow.Cells[1].Value.ToString(),
+                Units = int.Parse(dgvSchedules.CurrentRow.Cells[2].Value.ToString()),
+                TeacherName = dgvSchedules.CurrentRow.Cells[3].Value.ToString(),
+                Term = dgvSchedules.CurrentRow.Cells[4].Value.ToString(),
+                ClassGroup = dgvSchedules.CurrentRow.Cells[5].Value.ToString(),
+                DayOfWeek = dgvSchedules.CurrentRow.Cells[6].Value.ToString(),
+                StartTime = dgvSchedules.CurrentRow.Cells[7].Value.ToString(),
+                EndTime = dgvSchedules.CurrentRow.Cells[8].Value.ToString(),
+                Capacity = int.Parse(dgvSchedules.CurrentRow.Cells[9].Value.ToString()),
+            };
+            frmEditCourse frmEdit = new frmEditCourse(selectedModel);
+            if(frmEdit.ShowDialog() == DialogResult.OK)
+            {
+                BindGrid();
+            }
         }
         //Removes a schedule
         private void btnRemoveClass_Click(object sender, EventArgs e)
