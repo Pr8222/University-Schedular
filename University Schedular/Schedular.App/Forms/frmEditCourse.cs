@@ -33,5 +33,24 @@ namespace Schedular.App.Forms
         {
             this.Close();
         }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            CourseService service = new CourseService();
+            service.EditCourse(new EditCourseViewModel
+            {
+                Id = int.Parse(lableID.Text),
+                CourseTitle = txtCourseTiltle.Text,
+                Units = int.Parse(txtUnits.Text),
+                TeacherName = txtTeacherName.Text,
+                Term = txtTerm.Text,
+                ClassGroup = txtClassGroup.Text,
+                DayOfWeek = txtDayOfWeek.Text,
+                StartTime = TimeSpan.Parse(txtStartTime.Text),
+                EndTime = TimeSpan.Parse(txtEndTime.Text),
+                Capacity = int.Parse(txtCapacity.Text)
+            });
+            DialogResult = DialogResult.OK;
+        }
     }
 }

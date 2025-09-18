@@ -39,55 +39,89 @@ namespace Schedular.Business
 
             return result;
         }
-        public void AddSchedule(AddCourseViewModel addCourse)
+        // adding new teacher if not exists
+        internal Teacher AddTeacher(string teacherName)
         {
             var teacherList = _uow.TeacherRepository.GetTeachers();
-            var teacher = teacherList.FirstOrDefault(t => t.FullName.Equals(addCourse.TeacherName, StringComparison.OrdinalIgnoreCase));
+            var teacher = teacherList.FirstOrDefault(t => t.FullName.Equals(teacherName, StringComparison.OrdinalIgnoreCase));
             if (teacher == null)
             {
                 teacher = new Teacher
                 {
-                    FullName = addCourse.TeacherName
+                    FullName = teacherName
                 };
                 _uow.TeacherRepository.AddTeacher(teacher);
                 _uow.Save();
             }
-
+            return teacher;
+        }
+        // adding new course if not exists
+        internal Course AddCourse(string courseTitle, int units)
+        {
             var courseList = _uow.CourseRepository.GetCourses();
-            var course = courseList.FirstOrDefault(c => c.Title.Equals(addCourse.CourseTitle, StringComparison.OrdinalIgnoreCase));
+            var course = courseList.FirstOrDefault(c => c.Title.Equals(courseTitle, StringComparison.OrdinalIgnoreCase));
             if (course == null)
             {
                 course = new Course
                 {
-                    Title = addCourse.CourseTitle,
-                    Units = addCourse.Units
+                    Title = courseTitle,
+                    Units = units
                 };
                 _uow.CourseRepository.AddCourse(course);
                 _uow.Save();
             }
-
-            var schedule = new CourseSchedule
+            return course;
+        }
+        // add new schedule manually
+        public void AddSchedule(AddCourseViewModel addCourse)
+        {
+            if(addCourse != null)
             {
-                Teacher = teacher,
-                Course = course,
-                Term = addCourse.Term,
-                ClassGroup = addCourse.ClassGroup,
-                DayOfWeek = addCourse.DayOfWeek,
-                StartTime = addCourse.StartTime,
-                EndTime = addCourse.EndTime,
-                Capacity = addCourse.Capacity
-            };
+                var teacher = AddTeacher(addCourse.TeacherName);
+                var course = AddCourse(addCourse.CourseTitle, addCourse.Units);
+                var schedule = new CourseSchedule
+                {
+                    Teacher = teacher,
+                    Course = course,
+                    Term = addCourse.Term,
+                    ClassGroup = addCourse.ClassGroup,
+                    DayOfWeek = addCourse.DayOfWeek,
+                    StartTime = addCourse.StartTime,
+                    EndTime = addCourse.EndTime,
+                    Capacity = addCourse.Capacity
+                };
 
-            _uow.CourseScheduleRepository.AddCourse(schedule);
+                _uow.CourseScheduleRepository.AddCourse(schedule);
 
-            _uow.Save();
+                _uow.Save();
+            }
         }
         public void RemoveCourse(int courseId)
         {
             _uow.CourseScheduleRepository.RemoveCourse(courseId);
             _uow.Save();
         }
-
+        // edit course schedule
+        public void EditCourse(EditCourseViewModel model)
+        {
+            var schedule = _uow.CourseScheduleRepository.GetCourseScheduleById(model.Id);
+            if (schedule != null)
+            {
+                var teacher = AddTeacher(model.TeacherName);
+                var course = AddCourse(model.CourseTitle, model.Units);
+                schedule.Teacher = teacher;
+                schedule.Course = course;
+                schedule.Term = model.Term;
+                schedule.ClassGroup = model.ClassGroup;
+                schedule.DayOfWeek = model.DayOfWeek;
+                schedule.StartTime = model.StartTime;
+                schedule.EndTime = model.EndTime;
+                schedule.Capacity = model.Capacity;
+                _uow.CourseScheduleRepository.UpdateCourse(schedule);
+                _uow.Save();
+            }
+        }
+        // search course schedule
         public List<CourseScheduleViewModel> SearchCourseSchedule(string searchTxt)
         {
            var schdules = _uow.CourseScheduleRepository.GetCoursesByFilter(searchTxt);

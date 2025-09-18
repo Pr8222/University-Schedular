@@ -105,6 +105,7 @@
             this.btnSave.TabIndex = 20;
             this.btnSave.Text = "ذخیره";
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // txtCapacity
             // 
