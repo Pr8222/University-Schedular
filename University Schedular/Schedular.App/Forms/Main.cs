@@ -156,38 +156,54 @@ namespace Schedular.App.Forms
         // Save the schedule as pdf
         private void SaveAsPdf(string path)
         {
-
-            Document doc = new Document(PageSize.A4, 10, 10, 10, 10);
-            PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
-            doc.Open();
-
-            BaseFont bf = BaseFont.CreateFont(BaseFont.HELVETICA, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-            iTextSharp.text.Font font = new iTextSharp.text.Font(bf, 10);
-
-            PdfPTable table = new PdfPTable(dgvSchedules.Columns.Count);
-
-            foreach (DataGridViewColumn column in dgvSchedules.Columns)
+            try
             {
-                PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, font));
-                cell.BackgroundColor = BaseColor.LIGHT_GRAY;
-                table.AddCell(cell);
-            }
+                Document doc = new Document(PageSize.A4, 10, 10, 10, 10);
+                PdfWriter writer = PdfWriter.GetInstance(doc, new FileStream(path, FileMode.Create));
+                doc.Open();
 
-            foreach (DataGridViewRow row in dgvSchedules.Rows)
-            {
-                if (!row.IsNewRow)
+                string fontPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.Fonts), "tahoma.ttf");
+                BaseFont bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                iTextSharp.text.Font font = new iTextSharp.text.Font(bf, 11, iTextSharp.text.Font.NORMAL);
+
+                PdfPTable table = new PdfPTable(dgvSchedules.Columns.Count);
+                table.WidthPercentage = 100; 
+                table.RunDirection = PdfWriter.RUN_DIRECTION_RTL;
+
+                // هدر جدول
+                foreach (DataGridViewColumn column in dgvSchedules.Columns)
                 {
-                    foreach (DataGridViewCell cell in row.Cells)
+                    PdfPCell cell = new PdfPCell(new Phrase(column.HeaderText, font));
+                    cell.BackgroundColor = BaseColor.LIGHT_GRAY;
+                    cell.HorizontalAlignment = Element.ALIGN_CENTER;
+                    cell.RunDirection = PdfWriter.RUN_DIRECTION_RTL; 
+                    table.AddCell(cell);
+                }
+
+                // داده‌ها
+                foreach (DataGridViewRow row in dgvSchedules.Rows)
+                {
+                    if (!row.IsNewRow)
                     {
-                        table.AddCell(new Phrase(cell.Value?.ToString() ?? "", font));
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            PdfPCell pdfCell = new PdfPCell(new Phrase(cell.Value?.ToString() ?? "", font));
+                            pdfCell.HorizontalAlignment = Element.ALIGN_RIGHT; // راست‌چین متن
+                            pdfCell.RunDirection = PdfWriter.RUN_DIRECTION_RTL;
+                            table.AddCell(pdfCell);
+                        }
                     }
                 }
+
+                doc.Add(table);
+                doc.Close();
+
+                MessageBox.Show("فایل PDF با موفقیت ذخیره شد ✅");
             }
-
-            doc.Add(table);
-
-            doc.Close();
-            RtlMessageBox.Show("فایل PDF با موفقیت ذخیره شد ✅");
+            catch (Exception ex)
+            {
+                MessageBox.Show("خطا در ذخیره PDF: " + ex.Message);
+            }
         }
     }
 }
