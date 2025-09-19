@@ -42,8 +42,7 @@ namespace Schedular.Business
         // adding new teacher if not exists
         internal Teacher AddTeacher(string teacherName)
         {
-            var teacherList = _uow.TeacherRepository.GetTeachers();
-            var teacher = teacherList.FirstOrDefault(t => t.FullName.Equals(teacherName, StringComparison.OrdinalIgnoreCase));
+            var teacher = _uow.TeacherRepository.GetTeachers().FirstOrDefault(t => t.FullName.Equals(teacherName, StringComparison.OrdinalIgnoreCase));
             if (teacher == null)
             {
                 teacher = new Teacher
@@ -58,8 +57,7 @@ namespace Schedular.Business
         // adding new course if not exists
         internal Course AddCourse(string courseTitle, int units)
         {
-            var courseList = _uow.CourseRepository.GetCourses();
-            var course = courseList.FirstOrDefault(c => c.Title.Equals(courseTitle, StringComparison.OrdinalIgnoreCase));
+            var course = _uow.CourseRepository.GetCourses().FirstOrDefault(c => c.Title.Equals(courseTitle, StringComparison.OrdinalIgnoreCase));
             if (course == null)
             {
                 course = new Course

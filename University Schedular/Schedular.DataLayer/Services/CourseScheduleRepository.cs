@@ -21,7 +21,11 @@ namespace Schedular.DataLayer.Services
 
         public List<CourseSchedule> GetCourseSchedules()
         {
-            return db.CourseSchedule.ToList();
+            return db.CourseSchedule
+                .Include(c => c.Course)
+                .Include(c => c.Teacher)
+                .AsNoTracking()
+                .ToList();
         }
 
         public CourseSchedule GetCourseScheduleById(int courseId)
