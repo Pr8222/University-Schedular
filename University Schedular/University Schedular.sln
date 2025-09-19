@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedular.Business", "Sched
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedular.ViewModels", "Schedular.ViewModels\Schedular.ViewModels.csproj", "{360F0E09-20C2-46C0-9034-C94FA02683E7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shedular.Utilities", "Shedular.Utilities\Shedular.Utilities.csproj", "{0CE94A99-9954-4A74-961A-32682E018522}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Schedular.Utilities", "Schedular.Utilities\Schedular.Utilities.csproj", "{BB5939E0-C589-4F5F-A3CF-0B1C68E81C0C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{360F0E09-20C2-46C0-9034-C94FA02683E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{360F0E09-20C2-46C0-9034-C94FA02683E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{360F0E09-20C2-46C0-9034-C94FA02683E7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0CE94A99-9954-4A74-961A-32682E018522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0CE94A99-9954-4A74-961A-32682E018522}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0CE94A99-9954-4A74-961A-32682E018522}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0CE94A99-9954-4A74-961A-32682E018522}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BB5939E0-C589-4F5F-A3CF-0B1C68E81C0C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BB5939E0-C589-4F5F-A3CF-0B1C68E81C0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BB5939E0-C589-4F5F-A3CF-0B1C68E81C0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BB5939E0-C589-4F5F-A3CF-0B1C68E81C0C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
