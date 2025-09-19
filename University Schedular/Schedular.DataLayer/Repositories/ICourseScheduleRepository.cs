@@ -15,5 +15,6 @@ namespace Schedular.DataLayer.Repositories
         bool UpdateCourse(CourseSchedule course);
         bool RemoveCourse(CourseSchedule course);
         bool RemoveCourse(int courseId);
+        bool RemoveSameTermCourses(string term);
     }
 }

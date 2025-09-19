@@ -96,5 +96,19 @@ namespace Schedular.DataLayer.Services
             cs.ClassGroup.Contains(parameter) ||
             cs.DayOfWeek.Contains(parameter)).ToList();
         }
+
+        public bool RemoveSameTermCourses(string term)
+        {
+            try
+            {
+                var courses = db.CourseSchedule.Where(cs => cs.Term == term).ToList();
+                courses.ForEach(c => db.Entry(c).State = EntityState.Deleted);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
