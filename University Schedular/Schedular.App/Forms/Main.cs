@@ -4,6 +4,7 @@ using System.Text;
 using System.Windows.Forms;
 using Schedular.Business;
 using Schedular.ViewModels;
+using Schedular.Utilities;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -68,7 +69,7 @@ namespace Schedular.App.Forms
                     Title = dgvSchedules.CurrentRow.Cells[1].Value.ToString(),
                     TeacherName = dgvSchedules.CurrentRow.Cells[3].Value.ToString(),
                 };
-                if (MessageBox.Show($"آیا از حذف درس {course.Title} با استاد {course.TeacherName} اطمینان دارید؟", "توجه", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+                if (RtlMessageBox.Show($"آیا از حذف درس {course.Title} با استاد {course.TeacherName} اطمینان دارید؟", "توجه", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
                     int courseID = int.Parse(dgvSchedules.CurrentRow.Cells[0].Value.ToString());
                     service.RemoveCourse(courseID);
@@ -77,7 +78,7 @@ namespace Schedular.App.Forms
             }
             else
             {
-                MessageBox.Show("لطفا یک کلاس را انتخاب کنید", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RtlMessageBox.Show("لطفا یک کلاس را انتخاب کنید", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
         //Refreshes the table
@@ -133,13 +134,24 @@ namespace Schedular.App.Forms
                 {
                     for (int i = 0; i < dgvSchedules.Columns.Count; i++)
                     {
-                        sb.Append(row.Cells[i].Value?.ToString());
+                        var value = row.Cells[i].Value?.ToString();
+
+                        // اگر مقدار کاما داشت، داخل کوتیشن بذاریم
+                        if (value != null && value.Contains(","))
+                            value = $"\"{value}\"";
+
+                        sb.Append(value);
+
                         if (i < dgvSchedules.Columns.Count - 1)
                             sb.Append(",");
                     }
                     sb.AppendLine();
                 }
             }
+
+            File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
+
+            RtlMessageBox.Show("فایل CSV با موفقیت ذخیره شد.");
         }
         // Save the schedule as pdf
         private void SaveAsPdf(string path)
@@ -175,7 +187,7 @@ namespace Schedular.App.Forms
             doc.Add(table);
 
             doc.Close();
-            MessageBox.Show("فایل PDF با موفقیت ذخیره شد ✅");
+            RtlMessageBox.Show("فایل PDF با موفقیت ذخیره شد ✅");
         }
     }
 }
