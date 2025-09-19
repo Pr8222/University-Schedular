@@ -55,7 +55,6 @@ namespace Schedular.App.Forms
             if (frmEdit.ShowDialog() == DialogResult.OK)
             {
                 BindGrid();
-                dgvSchedules.Refresh();
             }
         }
         //Removes a schedule
@@ -79,6 +78,17 @@ namespace Schedular.App.Forms
             else
             {
                 RtlMessageBox.Show("لطفا یک کلاس را انتخاب کنید", "خطا", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+        private void btnRemoveSameTerms_Click(object sender, EventArgs e)
+        {
+            if (dgvSchedules != null)
+            {
+              frmRemoveSameTermCourse removeSameTermCourse = new frmRemoveSameTermCourse();
+              if (removeSameTermCourse.ShowDialog() == DialogResult.OK)
+                {
+                    BindGrid();
+                }
             }
         }
         //Refreshes the table
@@ -151,7 +161,7 @@ namespace Schedular.App.Forms
 
             File.WriteAllText(path, sb.ToString(), Encoding.UTF8);
 
-            RtlMessageBox.Show("فایل CSV با موفقیت ذخیره شد.");
+            RtlMessageBox.Show("فایل CSV با موفقیت ذخیره شد.✅");
         }
         // Save the schedule as pdf
         private void SaveAsPdf(string path)

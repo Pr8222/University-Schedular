@@ -94,9 +94,16 @@ namespace Schedular.Business
                 _uow.Save();
             }
         }
+        // removes the selected course
         public void RemoveCourse(int courseId)
         {
             _uow.CourseScheduleRepository.RemoveCourse(courseId);
+            _uow.Save();
+        }
+        // removes the courses within the same term
+        public void RemoveSameTermCourses(string term)
+        {
+            _uow.CourseScheduleRepository.RemoveSameTermCourses(term);
             _uow.Save();
         }
         // edit course schedule

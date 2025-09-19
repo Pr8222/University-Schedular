@@ -117,6 +117,7 @@
             this.btnRemoveSameTerms.Size = new System.Drawing.Size(187, 74);
             this.btnRemoveSameTerms.Text = "حذف کلاس‌های ترم مشخص";
             this.btnRemoveSameTerms.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnRemoveSameTerms.Click += new System.EventHandler(this.btnRemoveSameTerms_Click);
             // 
             // btnRefresh
             // 
