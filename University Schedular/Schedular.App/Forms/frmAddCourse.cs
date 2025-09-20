@@ -1,14 +1,8 @@
 ﻿using Schedular.Business;
 using Schedular.ViewModels;
+using Schedular.Utilities;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Schedular.App.Forms
@@ -18,6 +12,7 @@ namespace Schedular.App.Forms
         public frmAddCourse()
         {
             InitializeComponent();
+
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -34,7 +29,7 @@ namespace Schedular.App.Forms
                 Term = txtTerm.Text,
                 TeacherName = txtTeacherName.Text,
                 ClassGroup = int.Parse(txtClassGroup.Text),
-                Units  = int.Parse(txtUnits.Text),
+                Units = int.Parse(txtUnits.Text),
                 Capacity = int.Parse(txtCapacity.Text),
                 DayOfWeek = comboBoxDayOfWeek.Text,
                 StartTime = TimeSpan.Parse(maskedTextStartTime.Text),
@@ -45,25 +40,34 @@ namespace Schedular.App.Forms
 
         private async void btnSuggestWithAi_Click(object sender, EventArgs e)
         {
+
             try
             {
                 string apiKey = ConfigurationManager.AppSettings["APIKey"];
-
+                var service = new CourseService();
                 IAiService aiService = new AiService(apiKey);
 
-                // اینو باید از دیتابیس یا گریدت بگیری
-                var currentSchedules = new List<CourseScheduleViewModel>();
+                // فرم پارامترها رو نشون بده
+                using (var paramForm = new frmAiSuggestionParams())
+                {
+                    if (paramForm.ShowDialog() == DialogResult.OK)
+                    {
+                        var currentSchedules = service.GetAllCourseSchedules();
 
-                var suggestions = await aiService.SuggestSchedulesAsync(
-                    currentSchedules,
-                    "دکتر احمدی",         // TeacherName
-                    "برنامه نویسی پیشرفته", // CourseTitle
-                    1,                     // ClassGroup
-                    3,                     // Count
-                    "spread"               // یا "compact"
-                );
+                        var suggestions = await aiService.SuggestSchedulesAsync(
+                            currentSchedules,
+                            txtTeacherName.Text,         
+                            txtCourseTitle.Text,         
+                            int.Parse(txtClassGroup.Text), 
+                            paramForm.classCount,        
+                            paramForm.distributionType   
+                        );
 
-                dgvSuggestedSchdules.DataSource = suggestions;
+                        dgvSuggestedSchdules.AutoGenerateColumns = true;
+                        dgvSuggestedSchdules.DataSource = null;
+                        dgvSuggestedSchdules.DataSource = suggestions;
+                    }
+                }
             }
             catch (Exception ex)
             {

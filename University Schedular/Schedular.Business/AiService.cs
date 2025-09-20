@@ -88,6 +88,12 @@ namespace Schedular.Business
 
             var root = JObject.Parse(responseString);
             var content = root["choices"]?[0]?["message"]?["content"]?.ToString();
+            if (content.StartsWith("```"))
+            {
+                int start = content.IndexOf("[");
+                int end = content.LastIndexOf("]");
+                content = content.Substring(start, end - start + 1);
+            }
 
             if (string.IsNullOrWhiteSpace(content))
                 throw new Exception("No content returned from Gemini API.");
