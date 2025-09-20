@@ -48,8 +48,8 @@
             this.txtCourseTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnSaveSuggestions = new System.Windows.Forms.Button();
+            this.btnSuggestWithAi = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -237,8 +237,8 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.button4);
-            this.groupBox2.Controls.Add(this.button3);
+            this.groupBox2.Controls.Add(this.btnSaveSuggestions);
+            this.groupBox2.Controls.Add(this.btnSuggestWithAi);
             this.groupBox2.Controls.Add(this.button2);
             this.groupBox2.Controls.Add(this.button1);
             this.groupBox2.Location = new System.Drawing.Point(12, 119);
@@ -248,23 +248,24 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "عملیات";
             // 
-            // button4
+            // btnSaveSuggestions
             // 
-            this.button4.Location = new System.Drawing.Point(48, 14);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(120, 30);
-            this.button4.TabIndex = 3;
-            this.button4.Text = "ذخیره پیشنهادات";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btnSaveSuggestions.Location = new System.Drawing.Point(48, 14);
+            this.btnSaveSuggestions.Name = "btnSaveSuggestions";
+            this.btnSaveSuggestions.Size = new System.Drawing.Size(120, 30);
+            this.btnSaveSuggestions.TabIndex = 3;
+            this.btnSaveSuggestions.Text = "ذخیره پیشنهادات";
+            this.btnSaveSuggestions.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnSuggestWithAi
             // 
-            this.button3.Location = new System.Drawing.Point(253, 14);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(120, 30);
-            this.button3.TabIndex = 2;
-            this.button3.Text = "پیشنهاد AI";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSuggestWithAi.Location = new System.Drawing.Point(253, 14);
+            this.btnSuggestWithAi.Name = "btnSuggestWithAi";
+            this.btnSuggestWithAi.Size = new System.Drawing.Size(120, 30);
+            this.btnSuggestWithAi.TabIndex = 2;
+            this.btnSuggestWithAi.Text = "پیشنهاد AI";
+            this.btnSuggestWithAi.UseVisualStyleBackColor = true;
+            this.btnSuggestWithAi.Click += new System.EventHandler(this.btnSuggestWithAi_Click);
             // 
             // button2
             // 
@@ -354,8 +355,8 @@
         private System.Windows.Forms.MaskedTextBox maskedTextEndTime;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.MaskedTextBox maskedTextStartTime;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSaveSuggestions;
+        private System.Windows.Forms.Button btnSuggestWithAi;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
     }

@@ -40,5 +40,10 @@ namespace Schedular.App.Forms
             });
             DialogResult = DialogResult.OK;
         }
+
+        private void btnSuggestWithAi_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

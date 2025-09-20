@@ -17,7 +17,7 @@ namespace Schedular.DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Course()
         {
-            this.CourseSchedule = new HashSet<CourseSchedule>();
+            this.CourseSchedules = new HashSet<CourseSchedule>();
         }
     
         public int CourseID { get; set; }
@@ -25,6 +25,6 @@ namespace Schedular.DataLayer
         public int Units { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseSchedule> CourseSchedule { get; set; }
+        public virtual ICollection<CourseSchedule> CourseSchedules { get; set; }
     }
 }

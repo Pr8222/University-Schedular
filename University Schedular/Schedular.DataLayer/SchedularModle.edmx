@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="UniversitySchedular_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="UniversitySchedular_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Course">
           <Key>
             <PropertyRef Name="CourseID" />
@@ -21,7 +21,7 @@
           <Property Name="CourseID" Type="int" Nullable="false" />
           <Property Name="TeacherID" Type="int" Nullable="false" />
           <Property Name="Term" Type="nvarchar" MaxLength="20" Nullable="false" />
-          <Property Name="ClassGroup" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="ClassGroup" Type="int" Nullable="false" />
           <Property Name="DayOfWeek" Type="nvarchar" MaxLength="20" />
           <Property Name="StartTime" Type="time" Precision="0" />
           <Property Name="EndTime" Type="time" Precision="0" />
@@ -71,7 +71,8 @@
             <End Role="CourseSchedule" EntitySet="CourseSchedule" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="UniversitySchedular_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -82,7 +83,7 @@
           <Property Name="CourseID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Units" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="CourseSchedule" Relationship="Self.FK_CourseSchedule_Course" FromRole="Course" ToRole="CourseSchedule" />
+          <NavigationProperty Name="CourseSchedules" Relationship="Self.FK_CourseSchedule_Course" FromRole="Course" ToRole="CourseSchedule" />
         </EntityType>
         <EntityType Name="CourseSchedule">
           <Key>
@@ -92,7 +93,7 @@
           <Property Name="CourseID" Type="Int32" Nullable="false" />
           <Property Name="TeacherID" Type="Int32" Nullable="false" />
           <Property Name="Term" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="ClassGroup" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ClassGroup" Type="Int32" Nullable="false" />
           <Property Name="DayOfWeek" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="StartTime" Type="Time" Precision="0" />
           <Property Name="EndTime" Type="Time" Precision="0" />
@@ -106,7 +107,7 @@
           </Key>
           <Property Name="TeacherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="CourseSchedule" Relationship="Self.FK_CourseSchedule_Teacher" FromRole="Teacher" ToRole="CourseSchedule" />
+          <NavigationProperty Name="CourseSchedules" Relationship="Self.FK_CourseSchedule_Teacher" FromRole="Teacher" ToRole="CourseSchedule" />
         </EntityType>
         <Association Name="FK_CourseSchedule_Course">
           <End Role="Course" Type="Self.Course" Multiplicity="1" />
@@ -133,16 +134,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="UniversitySchedular_DBEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Course" EntityType="Self.Course" />
-          <EntitySet Name="CourseSchedule" EntityType="Self.CourseSchedule" />
-          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <EntitySet Name="Courses" EntityType="Self.Course" />
+          <EntitySet Name="CourseSchedules" EntityType="Self.CourseSchedule" />
+          <EntitySet Name="Teachers" EntityType="Self.Teacher" />
           <AssociationSet Name="FK_CourseSchedule_Course" Association="Self.FK_CourseSchedule_Course">
-            <End Role="Course" EntitySet="Course" />
-            <End Role="CourseSchedule" EntitySet="CourseSchedule" />
+            <End Role="Course" EntitySet="Courses" />
+            <End Role="CourseSchedule" EntitySet="CourseSchedules" />
           </AssociationSet>
           <AssociationSet Name="FK_CourseSchedule_Teacher" Association="Self.FK_CourseSchedule_Teacher">
-            <End Role="Teacher" EntitySet="Teacher" />
-            <End Role="CourseSchedule" EntitySet="CourseSchedule" />
+            <End Role="Teacher" EntitySet="Teachers" />
+            <End Role="CourseSchedule" EntitySet="CourseSchedules" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -151,7 +152,7 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="UniversitySchedular_DBModelStoreContainer" CdmEntityContainer="UniversitySchedular_DBEntities">
-          <EntitySetMapping Name="Course">
+          <EntitySetMapping Name="Courses">
             <EntityTypeMapping TypeName="UniversitySchedular_DBModel.Course">
               <MappingFragment StoreEntitySet="Course">
                 <ScalarProperty Name="CourseID" ColumnName="CourseID" />
@@ -160,7 +161,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="CourseSchedule">
+          <EntitySetMapping Name="CourseSchedules">
             <EntityTypeMapping TypeName="UniversitySchedular_DBModel.CourseSchedule">
               <MappingFragment StoreEntitySet="CourseSchedule">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -175,7 +176,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Teacher">
+          <EntitySetMapping Name="Teachers">
             <EntityTypeMapping TypeName="UniversitySchedular_DBModel.Teacher">
               <MappingFragment StoreEntitySet="Teacher">
                 <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
@@ -197,7 +198,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
