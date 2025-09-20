@@ -22,7 +22,7 @@ namespace Schedular.App.Forms
             txtUnits.Text = model.Units.ToString();
             txtTeacherName.Text = model.TeacherName;
             txtTerm.Text = model.Term;
-            txtClassGroup.Text = model.ClassGroup;
+            txtClassGroup.Text = model.ClassGroup.ToString();
             txtDayOfWeek.Text = model.DayOfWeek;
             txtStartTime.Text = model.StartTime;
             txtEndTime.Text = model.EndTime;
@@ -44,7 +44,7 @@ namespace Schedular.App.Forms
                 Units = int.Parse(txtUnits.Text),
                 TeacherName = txtTeacherName.Text,
                 Term = txtTerm.Text,
-                ClassGroup = txtClassGroup.Text,
+                ClassGroup = int.Parse(txtClassGroup.Text),
                 DayOfWeek = txtDayOfWeek.Text,
                 StartTime = TimeSpan.Parse(txtStartTime.Text),
                 EndTime = TimeSpan.Parse(txtEndTime.Text),

@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Schedular.Business;
+using Schedular.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Schedular.Business;
 
 namespace Schedular.App.Forms
 {
@@ -31,7 +33,7 @@ namespace Schedular.App.Forms
                 CourseTitle = txtCourseTitle.Text,
                 Term = txtTerm.Text,
                 TeacherName = txtTeacherName.Text,
-                ClassGroup = txtClassGroup.Text,
+                ClassGroup = int.Parse(txtClassGroup.Text),
                 Units  = int.Parse(txtUnits.Text),
                 Capacity = int.Parse(txtCapacity.Text),
                 DayOfWeek = comboBoxDayOfWeek.Text,
@@ -41,9 +43,32 @@ namespace Schedular.App.Forms
             DialogResult = DialogResult.OK;
         }
 
-        private void btnSuggestWithAi_Click(object sender, EventArgs e)
+        private async void btnSuggestWithAi_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string apiKey = ConfigurationManager.AppSettings["APIKey"];
 
+                IAiService aiService = new AiService(apiKey);
+
+                // اینو باید از دیتابیس یا گریدت بگیری
+                var currentSchedules = new List<CourseScheduleViewModel>();
+
+                var suggestions = await aiService.SuggestSchedulesAsync(
+                    currentSchedules,
+                    "دکتر احمدی",         // TeacherName
+                    "برنامه نویسی پیشرفته", // CourseTitle
+                    1,                     // ClassGroup
+                    3,                     // Count
+                    "spread"               // یا "compact"
+                );
+
+                dgvSuggestedSchdules.DataSource = suggestions;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"خطا در دریافت پیشنهاد از AI: {ex.Message}");
+            }
         }
     }
 }

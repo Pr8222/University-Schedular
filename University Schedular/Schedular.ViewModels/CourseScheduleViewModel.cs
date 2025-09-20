@@ -13,7 +13,7 @@ namespace Schedular.ViewModels
         public int Units { get; set; }
         public string TeacherName { get; set; }
         public string Term { get; set; }
-        public string ClassGroup { get; set; }
+        public int ClassGroup { get; set; }
         public string DayOfWeek { get; set; }
         public string StartTime { get; set; }
         public string EndTime { get; set; }

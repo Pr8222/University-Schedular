@@ -25,8 +25,8 @@ namespace Schedular.DataLayer
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Course> Courses { get; set; }
-        public virtual DbSet<CourseSchedule> CourseSchedules { get; set; }
-        public virtual DbSet<Teacher> Teachers { get; set; }
+        public virtual DbSet<Course> Course { get; set; }
+        public virtual DbSet<CourseSchedule> CourseSchedule { get; set; }
+        public virtual DbSet<Teacher> Teacher { get; set; }
     }
 }

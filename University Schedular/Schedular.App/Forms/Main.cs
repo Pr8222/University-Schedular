@@ -45,7 +45,7 @@ namespace Schedular.App.Forms
                 Units = int.Parse(dgvSchedules.CurrentRow.Cells[2].Value.ToString()),
                 TeacherName = dgvSchedules.CurrentRow.Cells[3].Value.ToString(),
                 Term = dgvSchedules.CurrentRow.Cells[4].Value.ToString(),
-                ClassGroup = dgvSchedules.CurrentRow.Cells[5].Value.ToString(),
+                ClassGroup = int.Parse(dgvSchedules.CurrentRow.Cells[5].Value.ToString()),
                 DayOfWeek = dgvSchedules.CurrentRow.Cells[6].Value.ToString(),
                 StartTime = dgvSchedules.CurrentRow.Cells[7].Value.ToString(),
                 EndTime = dgvSchedules.CurrentRow.Cells[8].Value.ToString(),

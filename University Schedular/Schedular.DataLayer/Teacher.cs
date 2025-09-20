@@ -17,13 +17,13 @@ namespace Schedular.DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Teacher()
         {
-            this.CourseSchedules = new HashSet<CourseSchedule>();
+            this.CourseSchedule = new HashSet<CourseSchedule>();
         }
     
         public int TeacherID { get; set; }
         public string FullName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CourseSchedule> CourseSchedules { get; set; }
+        public virtual ICollection<CourseSchedule> CourseSchedule { get; set; }
     }
 }
