@@ -47,7 +47,6 @@ namespace Schedular.App.Forms
                 var service = new CourseService();
                 IAiService aiService = new AiService(apiKey);
 
-                // فرم پارامترها رو نشون بده
                 using (var paramForm = new frmAiSuggestionParams())
                 {
                     if (paramForm.ShowDialog() == DialogResult.OK)
@@ -62,6 +61,12 @@ namespace Schedular.App.Forms
                             paramForm.classCount,        
                             paramForm.distributionType   
                         );
+                        foreach (var s in suggestions)
+                        {
+                            s.Term = txtTerm.Text;
+                            s.Units = int.Parse(txtUnits.Text);
+                            s.Capacity = int.Parse(txtCapacity.Text);
+                        }
 
                         dgvSuggestedSchdules.AutoGenerateColumns = true;
                         dgvSuggestedSchdules.DataSource = null;
@@ -72,6 +77,38 @@ namespace Schedular.App.Forms
             catch (Exception ex)
             {
                 MessageBox.Show($"خطا در دریافت پیشنهاد از AI: {ex.Message}");
+            }
+        }
+
+        private void btnSaveSuggestions_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                CourseService service = new CourseService();
+                foreach (DataGridViewRow row in dgvSuggestedSchdules.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    var schedule = new AddCourseViewModel
+                    {
+                        CourseTitle = txtCourseTitle.Text,
+                        Term = txtTerm.Text,
+                        TeacherName = txtTeacherName.Text,
+                        ClassGroup = int.Parse(txtClassGroup.Text),
+                        Units = int.Parse(txtUnits.Text),
+                        Capacity = int.Parse(txtCapacity.Text),
+                        DayOfWeek = row.Cells["DayOfWeek"].Value.ToString(),
+                        StartTime = TimeSpan.Parse(row.Cells["StartTime"].Value.ToString()),
+                        EndTime = TimeSpan.Parse(row.Cells["EndTime"].Value.ToString())
+                    };
+                    service.AddSchedule(schedule);
+                }
+                RtlMessageBox.Show("کلاس‌های پیشنهادی با موفقیت ذخیره شدند ✅");
+                DialogResult = DialogResult.OK;
+            }
+            catch (Exception ex)
+            {
+                RtlMessageBox.Show($"خطا در ذخیره پیشنهادها: {ex.Message}");
             }
         }
     }

@@ -256,6 +256,7 @@
             this.btnSaveSuggestions.TabIndex = 3;
             this.btnSaveSuggestions.Text = "ذخیره پیشنهادات";
             this.btnSaveSuggestions.UseVisualStyleBackColor = true;
+            this.btnSaveSuggestions.Click += new System.EventHandler(this.btnSaveSuggestions_Click);
             // 
             // btnSuggestWithAi
             // 
