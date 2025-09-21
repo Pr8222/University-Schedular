@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AddCourseViewModel.cs" />
     <Compile Include="CourseScheduleViewModel.cs" />
+    <Compile Include="CoursesViewModel.cs" />
     <Compile Include="EditCourseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
