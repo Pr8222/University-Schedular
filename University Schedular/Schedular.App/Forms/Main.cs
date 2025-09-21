@@ -215,5 +215,15 @@ namespace Schedular.App.Forms
                 MessageBox.Show("خطا در ذخیره PDF: " + ex.Message);
             }
         }
+
+        private void btnUnitsActions_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTeacherActions_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

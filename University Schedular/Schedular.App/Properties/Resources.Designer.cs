@@ -73,6 +73,16 @@ namespace Schedular.App.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap class_actions {
+            get {
+                object obj = ResourceManager.GetObject("class_actions", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap delete_same_term_courses {
             get {
                 object obj = ResourceManager.GetObject("delete_same_term_courses", resourceCulture);
@@ -116,6 +126,16 @@ namespace Schedular.App.Properties {
         internal static System.Drawing.Bitmap save_schedule {
             get {
                 object obj = ResourceManager.GetObject("save_schedule", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap teacher_actions {
+            get {
+                object obj = ResourceManager.GetObject("teacher_actions", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
