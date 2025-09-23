@@ -28,5 +28,10 @@ namespace Schedular.App.Forms
             dgvCourse.DataSource = null;
             dgvCourse.DataSource = units;
         }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            dgvCourse.DataSource = service.GetUnitsByFilter(txtSearch.Text);
+        }
     }
 }

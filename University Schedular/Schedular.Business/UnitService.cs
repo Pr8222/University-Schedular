@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Schedular.DataLayer;
@@ -28,6 +29,59 @@ namespace Schedular.Business
                     Units = c.Units
                 }).ToList();
             return units;
+        }
+
+        public bool AddUnit(string title, int unit)
+        {   try
+            {
+                var newUnit = new Course
+                {
+                    Title = title,
+                    Units = unit
+                };
+
+                _uow.CourseRepository.AddCourse(newUnit);
+
+                _uow.Save();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+            
+        }
+
+        public bool EditUnit(CoursesViewModel unit)
+        {
+            try
+            {
+                var updateUnit = new Course
+                {
+                    CourseID = unit.Id,
+                    Title = unit.CourseName,
+                    Units = unit.Units
+                };
+                _uow.CourseRepository.UpdateCourse(updateUnit);
+                _uow.Save();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public List<CoursesViewModel> GetUnitsByFilter(string searchTxt)
+        {
+            var units = _uow.CourseRepository.GetCourseByFilter(searchTxt);
+            var result = units.Select(u => new CoursesViewModel
+            {
+                Id = u.CourseID,
+                CourseName = u.Title,
+                Units = u.Units
+            }).ToList();
+            return result;
         }
     }
 }

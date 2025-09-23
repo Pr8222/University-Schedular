@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.Entity;
+using System.Runtime.Serialization;
 
 namespace Schedular.DataLayer.Services
 {
@@ -62,11 +63,22 @@ namespace Schedular.DataLayer.Services
             }
         }
 
-        
-
         public bool UpdateCourse(Course course)
         {
-            throw new NotImplementedException();
+            try
+            {
+                db.Entry(course).State = EntityState.Modified;
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public IEnumerable<Course> GetCourseByFilter(string param)
+        {
+            return db.Course.Where(c => c.Title.Contains(param));
         }
     }
 }
