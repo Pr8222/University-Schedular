@@ -132,6 +132,7 @@
             this.btnEditTeacher.TabIndex = 8;
             this.btnEditTeacher.Text = "ویرایش واحد";
             this.btnEditTeacher.UseVisualStyleBackColor = true;
+            this.btnEditTeacher.Click += new System.EventHandler(this.btnEditTeacher_Click);
             // 
             // label4
             // 

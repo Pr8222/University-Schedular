@@ -1,5 +1,6 @@
 ﻿using Schedular.Business;
 using Schedular.Utilities;
+using Schedular.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -41,6 +42,23 @@ namespace Schedular.App.Forms
             else
             {
                 RtlMessageBox.Show("عملیات اضافه کردن استاد جدید با خطا روبرو شد❎");
+            }
+        }
+
+        private void btnEditTeacher_Click(object sender, EventArgs e)
+        {
+            var teacher = new TeachersViewModel
+            {
+                TeacherID = int.Parse(txtEditTeacherID.Text),
+                TeacherName = txtEditTeacherName.Text,
+            };
+            if (service.EditTeacher(teacher))
+            {
+                RtlMessageBox.Show("استاد با موفقیت ویرایش شد✅");
+            }
+            else
+            {
+                RtlMessageBox.Show("در هنگام ویرایش استاد مشکلی پیش آمد❎");
             }
         }
     }

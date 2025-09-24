@@ -59,6 +59,23 @@ namespace Schedular.Business
             }
         }
 
-       
+        public bool EditTeacher(TeachersViewModel teacher)
+        {
+            try
+            {
+                var editTeacher = new Teacher
+                {
+                    TeacherID = teacher.TeacherID,
+                    FullName = teacher.TeacherName
+                };
+                _uow.TeacherRepository.UpdateTeacher(editTeacher);
+                _uow.Save();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }
