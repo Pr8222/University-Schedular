@@ -137,6 +137,7 @@
             this.btnDeleteUnit.TabIndex = 7;
             this.btnDeleteUnit.Text = "حذف واحد";
             this.btnDeleteUnit.UseVisualStyleBackColor = true;
+            this.btnDeleteUnit.Click += new System.EventHandler(this.btnDeleteUnit_Click);
             // 
             // btnPrevFrm
             // 

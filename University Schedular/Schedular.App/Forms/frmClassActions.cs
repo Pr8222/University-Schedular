@@ -59,12 +59,22 @@ namespace Schedular.App.Forms
             }
         }
 
+        private void btnDeleteUnit_Click(object sender, EventArgs e)
+        {
+            if(service.DeleteUnit(int.Parse(txtDeleteUnitID.Text)))
+            {
+                RtlMessageBox.Show("واحد با موفقیت حذف شد✅");
+            }
+            else
+            {
+                RtlMessageBox.Show("عملیات حذف واحد با خطا روبرو شد❎");
+            }
+        }
+
         private void btnShowUnits_Click(object sender, EventArgs e)
         {
             frmCourseList courseList = new frmCourseList();
             courseList.Show();
         }
-
-        
     }
 }

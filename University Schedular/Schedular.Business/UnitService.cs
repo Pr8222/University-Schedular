@@ -72,6 +72,20 @@ namespace Schedular.Business
             }
         }
 
+        public bool DeleteUnit(int unitId)
+        {
+            try
+            {
+                _uow.CourseRepository.DeleteCourse(unitId);
+                _uow.Save();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public List<CoursesViewModel> GetUnitsByFilter(string searchTxt)
         {
             var units = _uow.CourseRepository.GetCourseByFilter(searchTxt);
