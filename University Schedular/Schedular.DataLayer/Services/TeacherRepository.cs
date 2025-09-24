@@ -76,5 +76,9 @@ namespace Schedular.DataLayer.Services
                 return false;
             }
         }
+        public IEnumerable<Teacher> GetTeacherByFilter(string parameter)
+        {
+            return db.Teacher.Where(t => t.FullName.Contains(parameter));
+        }
     }
 }

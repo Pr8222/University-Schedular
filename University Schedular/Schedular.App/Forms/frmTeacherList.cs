@@ -1,5 +1,4 @@
 ﻿using Schedular.Business;
-using Schedular.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,28 +10,26 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Schedular.App.Forms
-{ 
-    public partial class frmCourseList : Form
+{
+    public partial class frmTeacherList : Form
     {
-        private readonly UnitService service;
-        public frmCourseList()
+        private readonly TeacherService service;
+        public frmTeacherList()
         {
             InitializeComponent();
-            service = new UnitService();
-            dgvCourse.AutoGenerateColumns = false;
+            service = new TeacherService();
+            dgvTeacher.AutoGenerateColumns = false;
             BindGrid();
         }
-        //Get The data from the service
+
         void BindGrid()
         {
-            var units = service.GetAllUnits();
-            dgvCourse.DataSource = null;
-            dgvCourse.DataSource = units;
+            dgvTeacher.DataSource = service.GetAllTeachers();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            dgvCourse.DataSource = service.GetUnitsByFilter(txtSearch.Text);
+            dgvTeacher.DataSource = service.GetTeachersByFilter(txtSearch.Text);
         }
     }
 }

@@ -226,7 +226,10 @@ namespace Schedular.App.Forms
 
         private void btnTeacherActions_Click(object sender, EventArgs e)
         {
-
+            frmTeacherActions teacherActions = new frmTeacherActions();
+            this.Hide();
+            teacherActions.ShowDialog();
+            this.Show();
         }
     }
 }

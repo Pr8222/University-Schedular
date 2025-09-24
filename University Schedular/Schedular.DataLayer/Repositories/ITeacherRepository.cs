@@ -9,8 +9,8 @@ namespace Schedular.DataLayer.Repositories
     public interface ITeacherRepository
     {
         List<Teacher> GetTeachers();
-
         Teacher GetTeacherById(int teacherId);
+        IEnumerable<Teacher> GetTeacherByFilter(string parameter);
         bool AddTeacher(Teacher teacher);
         bool UpdateTeacher(Teacher teacher);
         bool RemoveTeacher(Teacher teacher);

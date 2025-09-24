@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace Schedular.App.Forms
+{
+    public partial class frmTeacherActions : Form
+    {
+        public frmTeacherActions()
+        {
+            InitializeComponent();
+        }
+
+        private void btnPrevFrm_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnShowTeacher_Click(object sender, EventArgs e)
+        {
+            frmTeacherList frmTeacherList = new frmTeacherList();
+            frmTeacherList.Show();
+        }
+    }
+}

@@ -99,6 +99,18 @@
     <Compile Include="Forms\frmRemoveSameTermCourse.Designer.cs">
       <DependentUpon>frmRemoveSameTermCourse.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmTeacherActions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTeacherActions.Designer.cs">
+      <DependentUpon>frmTeacherActions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmTeacherList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmTeacherList.Designer.cs">
+      <DependentUpon>frmTeacherList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +136,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmRemoveSameTermCourse.resx">
       <DependentUpon>frmRemoveSameTermCourse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTeacherActions.resx">
+      <DependentUpon>frmTeacherActions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmTeacherList.resx">
+      <DependentUpon>frmTeacherList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
