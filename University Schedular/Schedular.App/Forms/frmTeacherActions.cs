@@ -61,5 +61,21 @@ namespace Schedular.App.Forms
                 RtlMessageBox.Show("در هنگام ویرایش استاد مشکلی پیش آمد❎");
             }
         }
+
+        private void btnDeleteTeacher_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(txtDeleteTeacherID.Text);
+            var teacher = service.GetTeacherById(id);
+            if(RtlMessageBox.Show($"آیا از حذف {teacher.TeacherName} با شناسه {teacher.TeacherID} اطمنیان دارید؟", "توجه", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
+                if (service.DeleteTeacher(id))
+                {
+                    RtlMessageBox.Show("استاد با موفقیت از لیست حذف شد✅");
+                }
+                else
+                {
+                    RtlMessageBox.Show("در هنگام حذف استاد مشکلی پیش آمد❎");
+                }
+            }
+        }
     }
 }

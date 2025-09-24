@@ -172,6 +172,7 @@
             this.btnDeleteTeacher.TabIndex = 7;
             this.btnDeleteTeacher.Text = "حذف واحد";
             this.btnDeleteTeacher.UseVisualStyleBackColor = true;
+            this.btnDeleteTeacher.Click += new System.EventHandler(this.btnDeleteTeacher_Click);
             // 
             // txtDeleteTeacherID
             // 

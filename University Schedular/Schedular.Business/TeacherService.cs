@@ -40,6 +40,17 @@ namespace Schedular.Business
             return list;
         }
 
+        public TeachersViewModel GetTeacherById(int teacherId)
+        {
+            var teacher = _uow.TeacherRepository.GetTeacherById(teacherId);
+            var result = new TeachersViewModel
+                {
+                    TeacherID = teacher.TeacherID,
+                    TeacherName = teacher.FullName
+                };
+            return result;
+        }
+
         public bool AddTeacher(string teacherName)
         {
             try
@@ -77,5 +88,19 @@ namespace Schedular.Business
                 return false;
             }
         }
+
+        public bool DeleteTeacher(int teacherId)
+        {
+            try
+            {
+                _uow.TeacherRepository.RemoveTeacher(teacherId);
+                _uow.Save();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        } 
     }
 }
