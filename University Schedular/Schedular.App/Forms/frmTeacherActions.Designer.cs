@@ -69,6 +69,7 @@
             this.btnAddTeacher.TabIndex = 9;
             this.btnAddTeacher.Text = "اضافه کردن واحد";
             this.btnAddTeacher.UseVisualStyleBackColor = true;
+            this.btnAddTeacher.Click += new System.EventHandler(this.btnAddTeacher_Click);
             // 
             // txtAddTeacher
             // 

@@ -39,5 +39,26 @@ namespace Schedular.Business
                 }).ToList();
             return list;
         }
+
+        public bool AddTeacher(string teacherName)
+        {
+            try
+            {
+                var newTeacher = new Teacher
+                {
+                    FullName = teacherName
+                };
+                _uow.TeacherRepository.AddTeacher(newTeacher);
+                _uow.Save();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+       
     }
 }

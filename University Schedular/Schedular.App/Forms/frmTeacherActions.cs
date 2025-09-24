@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Schedular.Business;
+using Schedular.Utilities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +14,11 @@ namespace Schedular.App.Forms
 {
     public partial class frmTeacherActions : Form
     {
+        private readonly TeacherService service;
         public frmTeacherActions()
         {
             InitializeComponent();
+            service = new TeacherService();
         }
 
         private void btnPrevFrm_Click(object sender, EventArgs e)
@@ -26,6 +30,18 @@ namespace Schedular.App.Forms
         {
             frmTeacherList frmTeacherList = new frmTeacherList();
             frmTeacherList.Show();
+        }
+
+        private void btnAddTeacher_Click(object sender, EventArgs e)
+        {
+            if(service.AddTeacher(txtAddTeacher.Text))
+            {
+                RtlMessageBox.Show("استاد با موفقیت به لیست اضافه شد✅");
+            }
+            else
+            {
+                RtlMessageBox.Show("عملیات اضافه کردن استاد جدید با خطا روبرو شد❎");
+            }
         }
     }
 }
