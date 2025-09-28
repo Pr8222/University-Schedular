@@ -35,45 +35,55 @@ namespace Schedular.App.Forms
 
         private void btnAddTeacher_Click(object sender, EventArgs e)
         {
-            if(service.AddTeacher(txtAddTeacher.Text))
+            if(requiredAddTeacher.IsValid)
             {
-                RtlMessageBox.Show("استاد با موفقیت به لیست اضافه شد✅");
-            }
-            else
-            {
-                RtlMessageBox.Show("عملیات اضافه کردن استاد جدید با خطا روبرو شد❎");
+                if (service.AddTeacher(txtAddTeacher.Text))
+                {
+                    RtlMessageBox.Show("استاد با موفقیت به لیست اضافه شد✅");
+                }
+                else
+                {
+                    RtlMessageBox.Show("عملیات اضافه کردن استاد جدید با خطا روبرو شد❎");
+                }
             }
         }
 
         private void btnEditTeacher_Click(object sender, EventArgs e)
         {
-            var teacher = new TeachersViewModel
+            if (requiredEditTeacherId.IsValid && requiredEditTeacherName.IsValid)
             {
-                TeacherID = int.Parse(txtEditTeacherID.Text),
-                TeacherName = txtEditTeacherName.Text,
-            };
-            if (service.EditTeacher(teacher))
-            {
-                RtlMessageBox.Show("استاد با موفقیت ویرایش شد✅");
-            }
-            else
-            {
-                RtlMessageBox.Show("در هنگام ویرایش استاد مشکلی پیش آمد❎");
+                var teacher = new TeachersViewModel
+                {
+                    TeacherID = int.Parse(txtEditTeacherID.Text),
+                    TeacherName = txtEditTeacherName.Text,
+                };
+                if (service.EditTeacher(teacher))
+                {
+                    RtlMessageBox.Show("استاد با موفقیت ویرایش شد✅");
+                }
+                else
+                {
+                    RtlMessageBox.Show("در هنگام ویرایش استاد مشکلی پیش آمد❎");
+                }
             }
         }
 
         private void btnDeleteTeacher_Click(object sender, EventArgs e)
         {
-            int id = int.Parse(txtDeleteTeacherID.Text);
-            var teacher = service.GetTeacherById(id);
-            if(RtlMessageBox.Show($"آیا از حذف {teacher.TeacherName} با شناسه {teacher.TeacherID} اطمنیان دارید؟", "توجه", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) {
-                if (service.DeleteTeacher(id))
+            if(requiredDeleteTeacherID.IsValid)
+            {
+                int id = int.Parse(txtDeleteTeacherID.Text);
+                var teacher = service.GetTeacherById(id);
+                if (RtlMessageBox.Show($"آیا از حذف {teacher.TeacherName} با شناسه {teacher.TeacherID} اطمنیان دارید؟", "توجه", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
                 {
-                    RtlMessageBox.Show("استاد با موفقیت از لیست حذف شد✅");
-                }
-                else
-                {
-                    RtlMessageBox.Show("در هنگام حذف استاد مشکلی پیش آمد❎");
+                    if (service.DeleteTeacher(id))
+                    {
+                        RtlMessageBox.Show("استاد با موفقیت از لیست حذف شد✅");
+                    }
+                    else
+                    {
+                        RtlMessageBox.Show("در هنگام حذف استاد مشکلی پیش آمد❎");
+                    }
                 }
             }
         }
