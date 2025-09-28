@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddCourse));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtCourseTitle = new System.Windows.Forms.ComboBox();
+            this.txtUnits = new System.Windows.Forms.Label();
             this.maskedTextEndTime = new System.Windows.Forms.MaskedTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -37,15 +39,12 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtCapacity = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtUnits = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtClassGroup = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtTeacherName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtTerm = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txtCourseTitle = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.btnSaveSuggestions = new System.Windows.Forms.Button();
@@ -54,6 +53,7 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dgvSuggestedSchdules = new System.Windows.Forms.DataGridView();
             this.maskedTextStartTime = new System.Windows.Forms.MaskedTextBox();
+            this.txtTeacherName = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuggestedSchdules)).BeginInit();
@@ -61,6 +61,9 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtTeacherName);
+            this.groupBox1.Controls.Add(this.txtCourseTitle);
+            this.groupBox1.Controls.Add(this.txtUnits);
             this.groupBox1.Controls.Add(this.maskedTextEndTime);
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label8);
@@ -68,15 +71,12 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtCapacity);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtUnits);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.txtClassGroup);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtTeacherName);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtTerm);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtCourseTitle);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.groupBox1.Location = new System.Drawing.Point(12, 13);
@@ -85,6 +85,22 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "اطلاعات درس";
+            // 
+            // txtCourseTitle
+            // 
+            this.txtCourseTitle.FormattingEnabled = true;
+            this.txtCourseTitle.Location = new System.Drawing.Point(583, 29);
+            this.txtCourseTitle.Name = "txtCourseTitle";
+            this.txtCourseTitle.Size = new System.Drawing.Size(199, 25);
+            this.txtCourseTitle.TabIndex = 19;
+            this.txtCourseTitle.SelectedIndexChanged += new System.EventHandler(this.txtCourseTitle_SelectedIndexChanged);
+            // 
+            // txtUnits
+            // 
+            this.txtUnits.Location = new System.Drawing.Point(736, 63);
+            this.txtUnits.Name = "txtUnits";
+            this.txtUnits.Size = new System.Drawing.Size(50, 17);
+            this.txtUnits.TabIndex = 0;
             // 
             // maskedTextEndTime
             // 
@@ -155,13 +171,6 @@
             this.label6.TabIndex = 10;
             this.label6.Text = "ظرفیت: ";
             // 
-            // txtUnits
-            // 
-            this.txtUnits.Location = new System.Drawing.Point(755, 60);
-            this.txtUnits.Name = "txtUnits";
-            this.txtUnits.Size = new System.Drawing.Size(27, 24);
-            this.txtUnits.TabIndex = 9;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -187,13 +196,6 @@
             this.label4.TabIndex = 6;
             this.label4.Text = "گروه درسی: ";
             // 
-            // txtTeacherName
-            // 
-            this.txtTeacherName.Location = new System.Drawing.Point(181, 30);
-            this.txtTeacherName.Name = "txtTeacherName";
-            this.txtTeacherName.Size = new System.Drawing.Size(200, 24);
-            this.txtTeacherName.TabIndex = 5;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -218,13 +220,6 @@
             this.label2.Size = new System.Drawing.Size(35, 17);
             this.label2.TabIndex = 2;
             this.label2.Text = "ترم: ";
-            // 
-            // txtCourseTitle
-            // 
-            this.txtCourseTitle.Location = new System.Drawing.Point(582, 30);
-            this.txtCourseTitle.Name = "txtCourseTitle";
-            this.txtCourseTitle.Size = new System.Drawing.Size(200, 24);
-            this.txtCourseTitle.TabIndex = 1;
             // 
             // label1
             // 
@@ -308,6 +303,14 @@
             this.maskedTextStartTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.maskedTextStartTime.ValidatingType = typeof(System.DateTime);
             // 
+            // txtTeacherName
+            // 
+            this.txtTeacherName.FormattingEnabled = true;
+            this.txtTeacherName.Location = new System.Drawing.Point(181, 27);
+            this.txtTeacherName.Name = "txtTeacherName";
+            this.txtTeacherName.Size = new System.Drawing.Size(200, 25);
+            this.txtTeacherName.TabIndex = 20;
+            // 
             // frmAddCourse
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -338,11 +341,9 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView dgvSuggestedSchdules;
-        private System.Windows.Forms.TextBox txtCourseTitle;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtClassGroup;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtTeacherName;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtTerm;
         private System.Windows.Forms.Label label2;
@@ -350,7 +351,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox txtCapacity;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtUnits;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.MaskedTextBox maskedTextEndTime;
@@ -360,5 +360,8 @@
         private System.Windows.Forms.Button btnSuggestWithAi;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.ComboBox txtCourseTitle;
+        private System.Windows.Forms.Label txtUnits;
+        private System.Windows.Forms.ComboBox txtTeacherName;
     }
 }

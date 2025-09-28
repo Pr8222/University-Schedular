@@ -9,10 +9,19 @@ namespace Schedular.App.Forms
 {
     public partial class frmAddCourse : Form
     {
+        private readonly CourseService service;
+        private readonly UnitService unitService;
+        private readonly TeacherService teacherService;
         public frmAddCourse()
         {
             InitializeComponent();
-
+            service = new CourseService();
+            unitService = new UnitService();
+            teacherService = new TeacherService();
+            txtCourseTitle.DataSource = unitService.GetAllUnits();
+            txtCourseTitle.DisplayMember = "CourseName";
+            txtTeacherName.DataSource = teacherService.GetAllTeachers();
+            txtTeacherName.DisplayMember = "TeacherName";
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -22,7 +31,6 @@ namespace Schedular.App.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            var service = new CourseService();
             service.AddSchedule(new ViewModels.AddCourseViewModel
             {
                 CourseTitle = txtCourseTitle.Text,
@@ -44,7 +52,6 @@ namespace Schedular.App.Forms
             try
             {
                 string apiKey = ConfigurationManager.AppSettings["APIKey"];
-                var service = new CourseService();
                 IAiService aiService = new AiService(apiKey);
 
                 using (var paramForm = new frmAiSuggestionParams())
@@ -84,7 +91,6 @@ namespace Schedular.App.Forms
         {
             try
             {
-                CourseService service = new CourseService();
                 foreach (DataGridViewRow row in dgvSuggestedSchdules.Rows)
                 {
                     if (row.IsNewRow) continue;
@@ -109,6 +115,14 @@ namespace Schedular.App.Forms
             catch (Exception ex)
             {
                 RtlMessageBox.Show($"خطا در ذخیره پیشنهادها: {ex.Message}");
+            }
+        }
+
+        private void txtCourseTitle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txtCourseTitle.SelectedItem is CoursesViewModel selectedCourse)
+            {
+                txtUnits.Text = selectedCourse.Units.ToString();
             }
         }
     }

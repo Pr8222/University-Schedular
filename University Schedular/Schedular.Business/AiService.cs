@@ -76,7 +76,7 @@ namespace Schedular.Business
 
             var body = new
             {
-                model = "gemini-1.5-flash",
+                model = "gemini-2.5-flash",
                 messages = new[]
                 {
                     new { role = "system", content = "You are an expert in academic schedule planning." },
