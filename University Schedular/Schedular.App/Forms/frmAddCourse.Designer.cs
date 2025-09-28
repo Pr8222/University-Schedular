@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAddCourse));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTeacherName = new System.Windows.Forms.ComboBox();
             this.txtCourseTitle = new System.Windows.Forms.ComboBox();
             this.txtUnits = new System.Windows.Forms.Label();
             this.maskedTextEndTime = new System.Windows.Forms.MaskedTextBox();
@@ -53,7 +55,9 @@
             this.button1 = new System.Windows.Forms.Button();
             this.dgvSuggestedSchdules = new System.Windows.Forms.DataGridView();
             this.maskedTextStartTime = new System.Windows.Forms.MaskedTextBox();
-            this.txtTeacherName = new System.Windows.Forms.ComboBox();
+            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.requiredFieldValidator2 = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.requiredFieldValidator3 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSuggestedSchdules)).BeginInit();
@@ -85,6 +89,14 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "اطلاعات درس";
+            // 
+            // txtTeacherName
+            // 
+            this.txtTeacherName.FormattingEnabled = true;
+            this.txtTeacherName.Location = new System.Drawing.Point(181, 27);
+            this.txtTeacherName.Name = "txtTeacherName";
+            this.txtTeacherName.Size = new System.Drawing.Size(200, 25);
+            this.txtTeacherName.TabIndex = 20;
             // 
             // txtCourseTitle
             // 
@@ -303,13 +315,26 @@
             this.maskedTextStartTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.maskedTextStartTime.ValidatingType = typeof(System.DateTime);
             // 
-            // txtTeacherName
+            // requiredFieldValidator1
             // 
-            this.txtTeacherName.FormattingEnabled = true;
-            this.txtTeacherName.Location = new System.Drawing.Point(181, 27);
-            this.txtTeacherName.Name = "txtTeacherName";
-            this.txtTeacherName.Size = new System.Drawing.Size(200, 25);
-            this.txtTeacherName.TabIndex = 20;
+            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
+            this.requiredFieldValidator1.ControlToValidate = this.txtCourseTitle;
+            this.requiredFieldValidator1.ErrorMessage = "لطفا نام واحد را وارد کنید";
+            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
+            // 
+            // requiredFieldValidator2
+            // 
+            this.requiredFieldValidator2.CancelFocusChangeWhenInvalid = false;
+            this.requiredFieldValidator2.ControlToValidate = this.txtTerm;
+            this.requiredFieldValidator2.ErrorMessage = "لطفا ترم را وارد کنید";
+            this.requiredFieldValidator2.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator2.Icon")));
+            // 
+            // requiredFieldValidator3
+            // 
+            this.requiredFieldValidator3.CancelFocusChangeWhenInvalid = false;
+            this.requiredFieldValidator3.ControlToValidate = this.txtClassGroup;
+            this.requiredFieldValidator3.ErrorMessage = "لطفا گروه کلاس را وارد کنید";
+            this.requiredFieldValidator3.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator3.Icon")));
             // 
             // frmAddCourse
             // 
@@ -363,5 +388,8 @@
         private System.Windows.Forms.ComboBox txtCourseTitle;
         private System.Windows.Forms.Label txtUnits;
         private System.Windows.Forms.ComboBox txtTeacherName;
+        private ValidationComponents.RequiredFieldValidator requiredFieldValidator1;
+        private ValidationComponents.RequiredFieldValidator requiredFieldValidator2;
+        private ValidationComponents.RequiredFieldValidator requiredFieldValidator3;
     }
 }

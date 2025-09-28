@@ -1,9 +1,10 @@
 ﻿using Schedular.Business;
-using Schedular.ViewModels;
 using Schedular.Utilities;
+using Schedular.ViewModels;
 using System;
 using System.Configuration;
 using System.Windows.Forms;
+using ValidationComponents;
 
 namespace Schedular.App.Forms
 {
@@ -31,19 +32,30 @@ namespace Schedular.App.Forms
 
         private void button2_Click(object sender, EventArgs e)
         {
-            service.AddSchedule(new ViewModels.AddCourseViewModel
+            if (BaseValidator.IsFormValid(this.components))
             {
-                CourseTitle = txtCourseTitle.Text,
-                Term = txtTerm.Text,
-                TeacherName = txtTeacherName.Text,
-                ClassGroup = int.Parse(txtClassGroup.Text),
-                Units = int.Parse(txtUnits.Text),
-                Capacity = int.Parse(txtCapacity.Text),
-                DayOfWeek = comboBoxDayOfWeek.Text,
-                StartTime = TimeSpan.Parse(maskedTextStartTime.Text),
-                EndTime = TimeSpan.Parse(maskedTextEndTime.Text)
-            });
-            DialogResult = DialogResult.OK;
+                try
+                {
+                    service.AddSchedule(new ViewModels.AddCourseViewModel
+                    {
+                        CourseTitle = txtCourseTitle.Text,
+                        Term = txtTerm.Text,
+                        TeacherName = txtTeacherName.Text,
+                        ClassGroup = int.Parse(txtClassGroup.Text),
+                        Units = int.Parse(txtUnits.Text),
+                        Capacity = int.Parse(txtCapacity.Text),
+                        DayOfWeek = comboBoxDayOfWeek.Text,
+                        StartTime = TimeSpan.Parse(maskedTextStartTime.Text),
+                        EndTime = TimeSpan.Parse(maskedTextEndTime.Text)
+                    });
+                    RtlMessageBox.Show("برنامه کلاسی با موفقیت به لیست اضافه شد✅");
+                    DialogResult = DialogResult.OK;
+                }
+                catch
+                {
+                    RtlMessageBox.Show("مشکلی در هنگام اضافه کردن برنامه کلاسی به لیست بوجود آمد❎");
+                }
+            }
         }
 
         private async void btnSuggestWithAi_Click(object sender, EventArgs e)
@@ -62,11 +74,11 @@ namespace Schedular.App.Forms
 
                         var suggestions = await aiService.SuggestSchedulesAsync(
                             currentSchedules,
-                            txtTeacherName.Text,         
-                            txtCourseTitle.Text,         
-                            int.Parse(txtClassGroup.Text), 
-                            paramForm.classCount,        
-                            paramForm.distributionType   
+                            txtTeacherName.Text,
+                            txtCourseTitle.Text,
+                            int.Parse(txtClassGroup.Text),
+                            paramForm.classCount,
+                            paramForm.distributionType
                         );
                         foreach (var s in suggestions)
                         {
@@ -89,32 +101,35 @@ namespace Schedular.App.Forms
 
         private void btnSaveSuggestions_Click(object sender, EventArgs e)
         {
-            try
+            if (BaseValidator.IsFormValid(this.components))
             {
-                foreach (DataGridViewRow row in dgvSuggestedSchdules.Rows)
+                try
                 {
-                    if (row.IsNewRow) continue;
-
-                    var schedule = new AddCourseViewModel
+                    foreach (DataGridViewRow row in dgvSuggestedSchdules.Rows)
                     {
-                        CourseTitle = txtCourseTitle.Text,
-                        Term = txtTerm.Text,
-                        TeacherName = txtTeacherName.Text,
-                        ClassGroup = int.Parse(txtClassGroup.Text),
-                        Units = int.Parse(txtUnits.Text),
-                        Capacity = int.Parse(txtCapacity.Text),
-                        DayOfWeek = row.Cells["DayOfWeek"].Value.ToString(),
-                        StartTime = TimeSpan.Parse(row.Cells["StartTime"].Value.ToString()),
-                        EndTime = TimeSpan.Parse(row.Cells["EndTime"].Value.ToString())
-                    };
-                    service.AddSchedule(schedule);
+                        if (row.IsNewRow) continue;
+
+                        var schedule = new AddCourseViewModel
+                        {
+                            CourseTitle = txtCourseTitle.Text,
+                            Term = txtTerm.Text,
+                            TeacherName = txtTeacherName.Text,
+                            ClassGroup = int.Parse(txtClassGroup.Text),
+                            Units = int.Parse(txtUnits.Text),
+                            Capacity = int.Parse(txtCapacity.Text),
+                            DayOfWeek = row.Cells["DayOfWeek"].Value.ToString(),
+                            StartTime = TimeSpan.Parse(row.Cells["StartTime"].Value.ToString()),
+                            EndTime = TimeSpan.Parse(row.Cells["EndTime"].Value.ToString())
+                        };
+                        service.AddSchedule(schedule);
+                    }
+                    RtlMessageBox.Show("کلاس‌های پیشنهادی با موفقیت ذخیره شدند ✅");
+                    DialogResult = DialogResult.OK;
                 }
-                RtlMessageBox.Show("کلاس‌های پیشنهادی با موفقیت ذخیره شدند ✅");
-                DialogResult = DialogResult.OK;
-            }
-            catch (Exception ex)
-            {
-                RtlMessageBox.Show($"خطا در ذخیره پیشنهادها: {ex.Message}");
+                catch (Exception ex)
+                {
+                    RtlMessageBox.Show($"خطا در ذخیره پیشنهادها: {ex.Message}");
+                }
             }
         }
 
