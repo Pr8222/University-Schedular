@@ -14,9 +14,19 @@ namespace Schedular.App.Forms
 {
     public partial class frmEditCourse : Form
     {
+        private readonly CourseService service;
+        private readonly UnitService unitService;
+        private readonly TeacherService teacherService;
         public frmEditCourse(CourseScheduleViewModel model)
         {
             InitializeComponent();
+            service = new CourseService();
+            unitService = new UnitService();
+            teacherService = new TeacherService();
+            txtCourseTiltle.DataSource = unitService.GetAllUnits();
+            txtCourseTiltle.DisplayMember = "CourseName";
+            txtTeacherName.DataSource = teacherService.GetAllTeachers();
+            txtTeacherName.DisplayMember = "TeacherName";
             lableID.Text = model.Id.ToString();
             txtCourseTiltle.Text = model.CourseTitle;
             txtUnits.Text = model.Units.ToString();
@@ -51,6 +61,14 @@ namespace Schedular.App.Forms
                 Capacity = int.Parse(txtCapacity.Text)
             });
             DialogResult = DialogResult.OK;
+        }
+
+        private void txtCourseTiltle_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txtCourseTiltle.SelectedItem is CoursesViewModel selectedCourse)
+            {
+                txtUnits.Text = selectedCourse.Units.ToString();
+            }
         }
     }
 }

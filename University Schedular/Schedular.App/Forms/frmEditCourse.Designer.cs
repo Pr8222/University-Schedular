@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditCourse));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtEndTime = new System.Windows.Forms.MaskedTextBox();
+            this.txtStartTime = new System.Windows.Forms.MaskedTextBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
             this.txtCapacity = new System.Windows.Forms.TextBox();
@@ -42,22 +44,23 @@
             this.label7 = new System.Windows.Forms.Label();
             this.txtTerm = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtTeacherName = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.txtUnits = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtCourseTiltle = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lableID = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.txtStartTime = new System.Windows.Forms.MaskedTextBox();
-            this.txtEndTime = new System.Windows.Forms.MaskedTextBox();
+            this.txtCourseTiltle = new System.Windows.Forms.ComboBox();
+            this.txtUnits = new System.Windows.Forms.Label();
+            this.txtTeacherName = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtTeacherName);
+            this.groupBox1.Controls.Add(this.txtUnits);
+            this.groupBox1.Controls.Add(this.txtCourseTiltle);
             this.groupBox1.Controls.Add(this.txtEndTime);
             this.groupBox1.Controls.Add(this.txtStartTime);
             this.groupBox1.Controls.Add(this.btnCancel);
@@ -72,11 +75,8 @@
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtTerm);
             this.groupBox1.Controls.Add(this.label6);
-            this.groupBox1.Controls.Add(this.txtTeacherName);
             this.groupBox1.Controls.Add(this.label5);
-            this.groupBox1.Controls.Add(this.txtUnits);
             this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.txtCourseTiltle);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.lableID);
             this.groupBox1.Controls.Add(this.label1);
@@ -86,6 +86,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "اطلاعات کلاس";
+            // 
+            // txtEndTime
+            // 
+            this.txtEndTime.Location = new System.Drawing.Point(6, 131);
+            this.txtEndTime.Mask = "90:00";
+            this.txtEndTime.Name = "txtEndTime";
+            this.txtEndTime.Size = new System.Drawing.Size(124, 24);
+            this.txtEndTime.TabIndex = 24;
+            this.txtEndTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtEndTime.ValidatingType = typeof(System.DateTime);
+            // 
+            // txtStartTime
+            // 
+            this.txtStartTime.Location = new System.Drawing.Point(6, 79);
+            this.txtStartTime.Mask = "90:00";
+            this.txtStartTime.Name = "txtStartTime";
+            this.txtStartTime.Size = new System.Drawing.Size(124, 24);
+            this.txtStartTime.TabIndex = 23;
+            this.txtStartTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtStartTime.ValidatingType = typeof(System.DateTime);
             // 
             // btnCancel
             // 
@@ -193,14 +213,6 @@
             this.label6.TabIndex = 8;
             this.label6.Text = "ترم:";
             // 
-            // txtTeacherName
-            // 
-            this.txtTeacherName.Location = new System.Drawing.Point(236, 184);
-            this.txtTeacherName.Name = "txtTeacherName";
-            this.txtTeacherName.Size = new System.Drawing.Size(121, 24);
-            this.txtTeacherName.TabIndex = 7;
-            this.txtTeacherName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -210,14 +222,6 @@
             this.label5.TabIndex = 6;
             this.label5.Text = "نام استاد:";
             // 
-            // txtUnits
-            // 
-            this.txtUnits.Location = new System.Drawing.Point(236, 131);
-            this.txtUnits.Name = "txtUnits";
-            this.txtUnits.Size = new System.Drawing.Size(121, 24);
-            this.txtUnits.TabIndex = 5;
-            this.txtUnits.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -226,14 +230,6 @@
             this.label4.Size = new System.Drawing.Size(39, 17);
             this.label4.TabIndex = 4;
             this.label4.Text = "واحد:";
-            // 
-            // txtCourseTiltle
-            // 
-            this.txtCourseTiltle.Location = new System.Drawing.Point(236, 79);
-            this.txtCourseTiltle.Name = "txtCourseTiltle";
-            this.txtCourseTiltle.Size = new System.Drawing.Size(121, 24);
-            this.txtCourseTiltle.TabIndex = 3;
-            this.txtCourseTiltle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // label3
             // 
@@ -261,25 +257,30 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "شناسه کلاس:";
             // 
-            // txtStartTime
+            // txtCourseTiltle
             // 
-            this.txtStartTime.Location = new System.Drawing.Point(6, 79);
-            this.txtStartTime.Mask = "90:00";
-            this.txtStartTime.Name = "txtStartTime";
-            this.txtStartTime.Size = new System.Drawing.Size(124, 24);
-            this.txtStartTime.TabIndex = 23;
-            this.txtStartTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtStartTime.ValidatingType = typeof(System.DateTime);
+            this.txtCourseTiltle.FormattingEnabled = true;
+            this.txtCourseTiltle.Location = new System.Drawing.Point(236, 83);
+            this.txtCourseTiltle.Name = "txtCourseTiltle";
+            this.txtCourseTiltle.Size = new System.Drawing.Size(121, 25);
+            this.txtCourseTiltle.TabIndex = 25;
+            this.txtCourseTiltle.SelectedIndexChanged += new System.EventHandler(this.txtCourseTiltle_SelectedIndexChanged);
             // 
-            // txtEndTime
+            // txtUnits
             // 
-            this.txtEndTime.Location = new System.Drawing.Point(6, 131);
-            this.txtEndTime.Mask = "90:00";
-            this.txtEndTime.Name = "txtEndTime";
-            this.txtEndTime.Size = new System.Drawing.Size(124, 24);
-            this.txtEndTime.TabIndex = 24;
-            this.txtEndTime.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtEndTime.ValidatingType = typeof(System.DateTime);
+            this.txtUnits.AutoSize = true;
+            this.txtUnits.Location = new System.Drawing.Point(318, 134);
+            this.txtUnits.Name = "txtUnits";
+            this.txtUnits.Size = new System.Drawing.Size(0, 17);
+            this.txtUnits.TabIndex = 26;
+            // 
+            // txtTeacherName
+            // 
+            this.txtTeacherName.FormattingEnabled = true;
+            this.txtTeacherName.Location = new System.Drawing.Point(236, 184);
+            this.txtTeacherName.Name = "txtTeacherName";
+            this.txtTeacherName.Size = new System.Drawing.Size(121, 25);
+            this.txtTeacherName.TabIndex = 27;
             // 
             // frmEditCourse
             // 
@@ -307,12 +308,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lableID;
-        private System.Windows.Forms.TextBox txtUnits;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtCourseTiltle;
         private System.Windows.Forms.TextBox txtTerm;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtTeacherName;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtDayOfWeek;
         private System.Windows.Forms.Label label8;
@@ -326,5 +324,8 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.MaskedTextBox txtEndTime;
         private System.Windows.Forms.MaskedTextBox txtStartTime;
+        private System.Windows.Forms.ComboBox txtTeacherName;
+        private System.Windows.Forms.Label txtUnits;
+        private System.Windows.Forms.ComboBox txtCourseTiltle;
     }
 }
