@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmClassActions));
+            this.gbAddUnit = new System.Windows.Forms.GroupBox();
             this.btnAddUnit = new System.Windows.Forms.Button();
             this.txtAddUnitCount = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -38,34 +40,40 @@
             this.btnEditUnit = new System.Windows.Forms.Button();
             this.btnDeleteUnit = new System.Windows.Forms.Button();
             this.btnPrevFrm = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.gbEditUnit = new System.Windows.Forms.GroupBox();
             this.txtEditUnitName = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtEditUnitCount = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtEditUnitID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.txtDeleteUnitID = new System.Windows.Forms.TextBox();
+            this.gbDeleteUnit = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.txtDeleteUnitID = new System.Windows.Forms.TextBox();
+            this.requiredAddUnitName = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.requiredEditUnitId = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.requiredEditUnitName = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.requiredDeleteUnitId = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.requiredAddUnitCount = new ValidationComponents.RangeValidator(this.components);
+            this.requiredEditUnitCount = new ValidationComponents.RangeValidator(this.components);
+            this.gbAddUnit.SuspendLayout();
+            this.gbEditUnit.SuspendLayout();
+            this.gbDeleteUnit.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // gbAddUnit
             // 
-            this.groupBox1.Controls.Add(this.btnAddUnit);
-            this.groupBox1.Controls.Add(this.txtAddUnitCount);
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.txtAddUnitName);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(776, 100);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "اضافه کردن واحد";
+            this.gbAddUnit.Controls.Add(this.btnAddUnit);
+            this.gbAddUnit.Controls.Add(this.txtAddUnitCount);
+            this.gbAddUnit.Controls.Add(this.label2);
+            this.gbAddUnit.Controls.Add(this.txtAddUnitName);
+            this.gbAddUnit.Controls.Add(this.label1);
+            this.gbAddUnit.Location = new System.Drawing.Point(12, 12);
+            this.gbAddUnit.Name = "gbAddUnit";
+            this.gbAddUnit.Size = new System.Drawing.Size(776, 100);
+            this.gbAddUnit.TabIndex = 0;
+            this.gbAddUnit.TabStop = false;
+            this.gbAddUnit.Text = "اضافه کردن واحد";
             // 
             // btnAddUnit
             // 
@@ -149,21 +157,21 @@
             this.btnPrevFrm.UseVisualStyleBackColor = true;
             this.btnPrevFrm.Click += new System.EventHandler(this.btnPrevFrm_Click);
             // 
-            // groupBox2
+            // gbEditUnit
             // 
-            this.groupBox2.Controls.Add(this.txtEditUnitName);
-            this.groupBox2.Controls.Add(this.label7);
-            this.groupBox2.Controls.Add(this.txtEditUnitCount);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.txtEditUnitID);
-            this.groupBox2.Controls.Add(this.btnEditUnit);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Location = new System.Drawing.Point(12, 129);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(776, 154);
-            this.groupBox2.TabIndex = 10;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "ویرایش واحد";
+            this.gbEditUnit.Controls.Add(this.txtEditUnitName);
+            this.gbEditUnit.Controls.Add(this.label7);
+            this.gbEditUnit.Controls.Add(this.txtEditUnitCount);
+            this.gbEditUnit.Controls.Add(this.label3);
+            this.gbEditUnit.Controls.Add(this.txtEditUnitID);
+            this.gbEditUnit.Controls.Add(this.btnEditUnit);
+            this.gbEditUnit.Controls.Add(this.label4);
+            this.gbEditUnit.Location = new System.Drawing.Point(12, 129);
+            this.gbEditUnit.Name = "gbEditUnit";
+            this.gbEditUnit.Size = new System.Drawing.Size(776, 154);
+            this.gbEditUnit.TabIndex = 10;
+            this.gbEditUnit.TabStop = false;
+            this.gbEditUnit.Text = "ویرایش واحد";
             // 
             // txtEditUnitName
             // 
@@ -213,24 +221,17 @@
             this.label4.TabIndex = 0;
             this.label4.Text = "شناسه واحد:";
             // 
-            // groupBox3
+            // gbDeleteUnit
             // 
-            this.groupBox3.Controls.Add(this.label5);
-            this.groupBox3.Controls.Add(this.btnDeleteUnit);
-            this.groupBox3.Controls.Add(this.txtDeleteUnitID);
-            this.groupBox3.Location = new System.Drawing.Point(12, 289);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(776, 100);
-            this.groupBox3.TabIndex = 11;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "حذف واحد";
-            // 
-            // txtDeleteUnitID
-            // 
-            this.txtDeleteUnitID.Location = new System.Drawing.Point(516, 50);
-            this.txtDeleteUnitID.Name = "txtDeleteUnitID";
-            this.txtDeleteUnitID.Size = new System.Drawing.Size(156, 24);
-            this.txtDeleteUnitID.TabIndex = 1;
+            this.gbDeleteUnit.Controls.Add(this.label5);
+            this.gbDeleteUnit.Controls.Add(this.btnDeleteUnit);
+            this.gbDeleteUnit.Controls.Add(this.txtDeleteUnitID);
+            this.gbDeleteUnit.Location = new System.Drawing.Point(12, 289);
+            this.gbDeleteUnit.Name = "gbDeleteUnit";
+            this.gbDeleteUnit.Size = new System.Drawing.Size(776, 100);
+            this.gbDeleteUnit.TabIndex = 11;
+            this.gbDeleteUnit.TabStop = false;
+            this.gbDeleteUnit.Text = "حذف واحد";
             // 
             // label5
             // 
@@ -241,35 +242,90 @@
             this.label5.TabIndex = 8;
             this.label5.Text = "شناسه واحد:";
             // 
+            // txtDeleteUnitID
+            // 
+            this.txtDeleteUnitID.Location = new System.Drawing.Point(516, 50);
+            this.txtDeleteUnitID.Name = "txtDeleteUnitID";
+            this.txtDeleteUnitID.Size = new System.Drawing.Size(156, 24);
+            this.txtDeleteUnitID.TabIndex = 1;
+            // 
+            // requiredAddUnitName
+            // 
+            this.requiredAddUnitName.CancelFocusChangeWhenInvalid = false;
+            this.requiredAddUnitName.ControlToValidate = this.txtAddUnitName;
+            this.requiredAddUnitName.ErrorMessage = "لطفا نام واحد را وارد کنید.";
+            this.requiredAddUnitName.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredAddUnitName.Icon")));
+            // 
+            // requiredEditUnitId
+            // 
+            this.requiredEditUnitId.CancelFocusChangeWhenInvalid = false;
+            this.requiredEditUnitId.ControlToValidate = this.txtEditUnitID;
+            this.requiredEditUnitId.ErrorMessage = "شناسه واحد را وارد کنید.";
+            this.requiredEditUnitId.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredEditUnitId.Icon")));
+            // 
+            // requiredEditUnitName
+            // 
+            this.requiredEditUnitName.CancelFocusChangeWhenInvalid = false;
+            this.requiredEditUnitName.ControlToValidate = this.txtEditUnitName;
+            this.requiredEditUnitName.ErrorMessage = "لطفا نام واحد را وارد نمایید";
+            this.requiredEditUnitName.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredEditUnitName.Icon")));
+            // 
+            // requiredDeleteUnitId
+            // 
+            this.requiredDeleteUnitId.CancelFocusChangeWhenInvalid = false;
+            this.requiredDeleteUnitId.ControlToValidate = this.txtDeleteUnitID;
+            this.requiredDeleteUnitId.ErrorMessage = "لطفا شناسه واحد را وارد نمایید.";
+            this.requiredDeleteUnitId.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredDeleteUnitId.Icon")));
+            // 
+            // requiredAddUnitCount
+            // 
+            this.requiredAddUnitCount.CancelFocusChangeWhenInvalid = false;
+            this.requiredAddUnitCount.ControlToValidate = this.txtAddUnitCount;
+            this.requiredAddUnitCount.ErrorMessage = "لطفا تعداد واحد را وارد کنید.";
+            this.requiredAddUnitCount.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredAddUnitCount.Icon")));
+            this.requiredAddUnitCount.MaximumValue = "3";
+            this.requiredAddUnitCount.MinimumValue = "1";
+            this.requiredAddUnitCount.Type = ValidationComponents.ValidationDataType.Integer;
+            // 
+            // requiredEditUnitCount
+            // 
+            this.requiredEditUnitCount.CancelFocusChangeWhenInvalid = false;
+            this.requiredEditUnitCount.ControlToValidate = this.txtEditUnitCount;
+            this.requiredEditUnitCount.ErrorMessage = "لطفا تعداد واحد را وارد کنید.";
+            this.requiredEditUnitCount.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredEditUnitCount.Icon")));
+            this.requiredEditUnitCount.MaximumValue = "3";
+            this.requiredEditUnitCount.MinimumValue = "1";
+            this.requiredEditUnitCount.Type = ValidationComponents.ValidationDataType.Integer;
+            // 
             // frmClassActions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 437);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
+            this.Controls.Add(this.gbDeleteUnit);
+            this.Controls.Add(this.gbEditUnit);
             this.Controls.Add(this.btnShowUnits);
             this.Controls.Add(this.btnPrevFrm);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.gbAddUnit);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmClassActions";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "عملیات مربوط به واحد";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.gbAddUnit.ResumeLayout(false);
+            this.gbAddUnit.PerformLayout();
+            this.gbEditUnit.ResumeLayout(false);
+            this.gbEditUnit.PerformLayout();
+            this.gbDeleteUnit.ResumeLayout(false);
+            this.gbDeleteUnit.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox gbAddUnit;
         private System.Windows.Forms.TextBox txtAddUnitName;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtAddUnitCount;
@@ -279,15 +335,21 @@
         private System.Windows.Forms.Button btnAddUnit;
         private System.Windows.Forms.Button btnEditUnit;
         private System.Windows.Forms.Button btnShowUnits;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox gbEditUnit;
         private System.Windows.Forms.TextBox txtEditUnitCount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtEditUnitID;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtEditUnitName;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox gbDeleteUnit;
         private System.Windows.Forms.TextBox txtDeleteUnitID;
         private System.Windows.Forms.Label label5;
+        private ValidationComponents.RequiredFieldValidator requiredAddUnitName;
+        private ValidationComponents.RequiredFieldValidator requiredEditUnitId;
+        private ValidationComponents.RequiredFieldValidator requiredEditUnitName;
+        private ValidationComponents.RequiredFieldValidator requiredDeleteUnitId;
+        private ValidationComponents.RangeValidator requiredAddUnitCount;
+        private ValidationComponents.RangeValidator requiredEditUnitCount;
     }
 }

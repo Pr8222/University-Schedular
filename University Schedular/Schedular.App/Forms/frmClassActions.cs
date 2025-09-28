@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ValidationComponents;
 
 namespace Schedular.App.Forms
 {
@@ -29,45 +30,54 @@ namespace Schedular.App.Forms
 
         private void btnAddUnit_Click(object sender, EventArgs e)
         {
-            int unit = int.Parse(txtAddUnitCount.Text);
-            if (service.AddUnit(txtAddUnitName.Text, unit))
+            if (requiredAddUnitName.IsValid && requiredAddUnitCount.IsValid)
             {
-                RtlMessageBox.Show("واحد با موفقیت اضافه شد✅");
-            }
-            else
-            {
-                RtlMessageBox.Show("عملیات اضافه کردن واحد با خطا روبرو شد❎");
+                int unit = int.Parse(txtAddUnitCount.Text);
+                if (service.AddUnit(txtAddUnitName.Text, unit))
+                {
+                    RtlMessageBox.Show("واحد با موفقیت اضافه شد✅");
+                }
+                else
+                {
+                    RtlMessageBox.Show("عملیات اضافه کردن واحد با خطا روبرو شد❎");
+                }
             }
             
         }
 
         private void btnEditUnit_Click(object sender, EventArgs e)
         {
-            var editUnit = new CoursesViewModel
+            if (requiredEditUnitId.IsValid && requiredEditUnitName.IsValid && requiredEditUnitCount.IsValid)
             {
-                Id = int.Parse(txtEditUnitID.Text),
-                CourseName = txtEditUnitName.Text,
-                Units = int.Parse(txtEditUnitCount.Text)
-            };
-            if (service.EditUnit(editUnit))
-            {
-                RtlMessageBox.Show("واحد با موفقیت ویرایش یافت✅");
-            }
-            else
-            {
-                RtlMessageBox.Show("عملیات ویرایش واحد با خطا روبرو شد❎");
+                var editUnit = new CoursesViewModel
+                {
+                    Id = int.Parse(txtEditUnitID.Text),
+                    CourseName = txtEditUnitName.Text,
+                    Units = int.Parse(txtEditUnitCount.Text)
+                };
+                if (service.EditUnit(editUnit))
+                {
+                    RtlMessageBox.Show("واحد با موفقیت ویرایش یافت✅");
+                }
+                else
+                {
+                    RtlMessageBox.Show("عملیات ویرایش واحد با خطا روبرو شد❎");
+                }
             }
         }
 
         private void btnDeleteUnit_Click(object sender, EventArgs e)
         {
-            if(service.DeleteUnit(int.Parse(txtDeleteUnitID.Text)))
+            if (requiredDeleteUnitId.IsValid)
             {
-                RtlMessageBox.Show("واحد با موفقیت حذف شد✅");
-            }
-            else
-            {
-                RtlMessageBox.Show("عملیات حذف واحد با خطا روبرو شد❎");
+                if (service.DeleteUnit(int.Parse(txtDeleteUnitID.Text)))
+                {
+                    RtlMessageBox.Show("واحد با موفقیت حذف شد✅");
+                }
+                else
+                {
+                    RtlMessageBox.Show("عملیات حذف واحد با خطا روبرو شد❎");
+                }
             }
         }
 
