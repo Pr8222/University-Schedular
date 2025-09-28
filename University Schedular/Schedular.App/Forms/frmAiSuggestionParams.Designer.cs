@@ -28,12 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAiSuggestionParams));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.cbDistributionType = new System.Windows.Forms.ComboBox();
             this.txtClassCount = new System.Windows.Forms.TextBox();
             this.btnAssign = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.requiredFieldValidator1 = new ValidationComponents.RequiredFieldValidator(this.components);
+            this.requiredFieldValidator2 = new ValidationComponents.RequiredFieldValidator(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -92,6 +96,20 @@
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
+            // requiredFieldValidator1
+            // 
+            this.requiredFieldValidator1.CancelFocusChangeWhenInvalid = false;
+            this.requiredFieldValidator1.ControlToValidate = this.cbDistributionType;
+            this.requiredFieldValidator1.ErrorMessage = "لطفا یک نوع پخش را انتخاب کنید";
+            this.requiredFieldValidator1.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator1.Icon")));
+            // 
+            // requiredFieldValidator2
+            // 
+            this.requiredFieldValidator2.CancelFocusChangeWhenInvalid = false;
+            this.requiredFieldValidator2.ControlToValidate = this.txtClassCount;
+            this.requiredFieldValidator2.ErrorMessage = "لطفا تعداد کلاس‌ها را وارد کنید";
+            this.requiredFieldValidator2.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredFieldValidator2.Icon")));
+            // 
             // frmAiSuggestionParams
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -122,5 +140,7 @@
         private System.Windows.Forms.TextBox txtClassCount;
         private System.Windows.Forms.Button btnAssign;
         private System.Windows.Forms.Button btnCancel;
+        private ValidationComponents.RequiredFieldValidator requiredFieldValidator1;
+        private ValidationComponents.RequiredFieldValidator requiredFieldValidator2;
     }
 }

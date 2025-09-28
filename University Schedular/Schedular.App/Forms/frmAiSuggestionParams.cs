@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ValidationComponents;
 
 namespace Schedular.App.Forms
 {
@@ -26,10 +27,13 @@ namespace Schedular.App.Forms
 
         private void btnAssign_Click(object sender, EventArgs e)
         {
-            this.distributionType = cbDistributionType.Text == "در یک روز" ? "compact" : "spread";
-            this.classCount = int.Parse(txtClassCount.Text);
+            if (BaseValidator.IsFormValid(this.components))
+            {
+                this.distributionType = cbDistributionType.Text == "در یک روز" ? "compact" : "spread";
+                this.classCount = int.Parse(txtClassCount.Text);
 
-            DialogResult = DialogResult.OK;
+                DialogResult = DialogResult.OK;
+            }
         }
     }
 }
