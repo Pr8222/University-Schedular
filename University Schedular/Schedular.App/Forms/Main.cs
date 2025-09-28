@@ -24,6 +24,7 @@ namespace Schedular.App.Forms
         {
             var schedules = service.GetAllCourseSchedules();
             dgvSchedules.DataSource = null;
+            dgvSchedules.AutoGenerateColumns = false;
             dgvSchedules.DataSource = schedules;
         }
         //Opening the add form to add a schedule for the course
