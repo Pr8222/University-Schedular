@@ -39,35 +39,18 @@ namespace Schedular.Business
 
             return result;
         }
-        // adding new teacher if not exists
-        internal Teacher AddTeacher(string teacherName)
+        // getting the teacher id
+        internal Teacher GetTeacherId(string teacherName)
         {
             var teacher = _uow.TeacherRepository.GetTeachers().FirstOrDefault(t => t.FullName.Equals(teacherName, StringComparison.OrdinalIgnoreCase));
-            if (teacher == null)
-            {
-                teacher = new Teacher
-                {
-                    FullName = teacherName
-                };
-                _uow.TeacherRepository.AddTeacher(teacher);
-                _uow.Save();
-            }
+            
             return teacher;
         }
-        // adding new course if not exists
-        internal Course AddCourse(string courseTitle, int units)
+        // getting the course id
+        internal Course GetCourseId(string courseTitle, int units)
         {
             var course = _uow.CourseRepository.GetCourses().FirstOrDefault(c => c.Title.Equals(courseTitle, StringComparison.OrdinalIgnoreCase));
-            if (course == null)
-            {
-                course = new Course
-                {
-                    Title = courseTitle,
-                    Units = units
-                };
-                _uow.CourseRepository.AddCourse(course);
-                _uow.Save();
-            }
+           
             return course;
         }
         // add new schedule manually
@@ -75,8 +58,8 @@ namespace Schedular.Business
         {
             if(addCourse != null)
             {
-                var teacher = AddTeacher(addCourse.TeacherName);
-                var course = AddCourse(addCourse.CourseTitle, addCourse.Units);
+                var teacher = GetTeacherId(addCourse.TeacherName);
+                var course = GetCourseId(addCourse.CourseTitle, addCourse.Units);
                 var schedule = new CourseSchedule
                 {
                     Teacher = teacher,
@@ -112,8 +95,8 @@ namespace Schedular.Business
             var schedule = _uow.CourseScheduleRepository.GetCourseScheduleById(model.Id);
             if (schedule != null)
             {
-                var teacher = AddTeacher(model.TeacherName);
-                var course = AddCourse(model.CourseTitle, model.Units);
+                var teacher = GetTeacherId(model.TeacherName);
+                var course = GetCourseId(model.CourseTitle, model.Units);
                 schedule.Teacher = teacher;
                 schedule.Course = course;
                 schedule.Term = model.Term;
