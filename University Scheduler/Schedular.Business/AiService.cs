@@ -3,6 +3,7 @@ using Newtonsoft.Json.Linq;
 using Schedular.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,44 +36,45 @@ namespace Schedular.Business
             string distributionType
         )
         {
-            string schedulesJson = JsonConvert.SerializeObject(currentSchedules, Formatting.Indented);
+
+            var relevantSchedules = currentSchedules
+                .Where(s => s.TeacherName == teacherName || s.ClassGroup == classGroup)
+                .Select(s => new
+                {
+                    s.DayOfWeek,
+                    s.StartTime,
+                    s.EndTime,
+                    s.TeacherName,
+                    s.ClassGroup
+                })
+                .ToList();
+
+            string schedulesJson = JsonConvert.SerializeObject(relevantSchedules);
 
             var prompt = $@"
 تو یک برنامه‌ریز دانشگاهی هستی.
-وظیفه‌ات این است که برای دروس، برنامه درسی جدید پیشنهاد بدهی.
+با توجه به اطلاعات زیر، یک برنامه‌ی جدید پیشنهاد بده.
 
-ورودی:
-- نام درس: {courseTitle}
-- نام استاد: {teacherName}
-- شماره گروه: {classGroup}
-- تعداد کلاس‌ها: {count}
-- نوع پخش: {(distributionType == "spread" ? "در طول هفته پخش شود" : "فشرده در یک روز باشد")}
-- برنامه‌های فعلی (برای جلوگیری از تداخل):
+درس: {courseTitle}
+استاد: {teacherName}
+گروه: {classGroup}
+تعداد کلاس‌ها: {count}
+نوع پخش: {(distributionType == "spread" ? "پخش در هفته" : "فشرده در یک روز")}
+برنامه‌های فعلی مرتبط:
 {schedulesJson}
 
 قوانین:
-1. کلاس‌های گروه مشترک نباید با هم تداخل زمانی داشته باشند.
-2. نوع پخش باید رعایت شود:
-   - spread → کلاس‌ها در طول هفته توزیع شوند.
-   - compact → اگر تعداد کلاس‌ها بیشتر از 1 باشد، همه کلاس‌ها در یک روز برگزار شوند.
-3. خروجی باید فقط یک آرایه JSON باشد (هیچ متن اضافی یا توضیحی نباشد).
-4. هر آیتم خروجی باید شامل این خصوصیات باشد:
-   - DayOfWeek
-   - StartTime
-   - EndTime
-   - CourseTitle
-   - TeacherName
-   - ClassGroup
-5. طول زمان کلاس‌ها بر اساس تعداد واحد مشخص شود:
-   - 3 واحد → 2 ساعت و 30 دقیقه
-   - 2 واحد → 1 ساعت و 40 دقیقه
-   - 1 واحد → 1 ساعت و 40 دقیقه
-6. زمان شروع اولین کلاس‌ها ساعت 08:00 صبح باشد.
-7. زمان پایان آخرین کلاس‌ها حداکثر ساعت 20:00 شب باشد.
-8. شروع کلاس‌ها به صورت منطقی پشت‌سرهم یا در روزهای مختلف (بسته به نوع پخش) تنظیم شود.
-9. روزها رو به صورت فارسی بده
+1. کلاس‌های استاد یا گروه نباید تداخل زمانی داشته باشند.
+2. نوع پخش رعایت شود (spread = پخش، compact = فشرده در یک روز).
+3. فقط خروجی JSON آرایه‌ای بده (بدون توضیح).
+4. هر کلاس شامل: DayOfWeek، StartTime، EndTime، CourseTitle، TeacherName، ClassGroup باشد.
+5. زمان کلاس‌ها:
+   - 3 واحد = 2:30
+   - 2 واحد = 1:40
+   - 1 واحد = 1:40
+6. شروع از 08:00 و پایان حداکثر 20:00.
+7. روزها به فارسی باشد.
 ";
-
 
             var body = new
             {
@@ -98,7 +100,7 @@ namespace Schedular.Business
 
             var root = JObject.Parse(responseString);
             var content = root["choices"]?[0]?["message"]?["content"]?.ToString();
-            if (content.StartsWith("```"))
+            if (!string.IsNullOrWhiteSpace(content) && content.StartsWith("```"))
             {
                 int start = content.IndexOf("[");
                 int end = content.LastIndexOf("]");
