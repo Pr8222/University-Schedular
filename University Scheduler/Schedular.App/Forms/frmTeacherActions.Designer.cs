@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherActions));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddTeacher = new System.Windows.Forms.Button();
             this.txtAddTeacher = new System.Windows.Forms.TextBox();
@@ -46,10 +44,6 @@
             this.txtDeleteTeacherID = new System.Windows.Forms.TextBox();
             this.btnShowTeacher = new System.Windows.Forms.Button();
             this.btnPrevFrm = new System.Windows.Forms.Button();
-            this.requiredAddTeacher = new ValidationComponents.RequiredFieldValidator(this.components);
-            this.requiredEditTeacherId = new ValidationComponents.RequiredFieldValidator(this.components);
-            this.requiredEditTeacherName = new ValidationComponents.RequiredFieldValidator(this.components);
-            this.requiredDeleteTeacherID = new ValidationComponents.RequiredFieldValidator(this.components);
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -207,34 +201,6 @@
             this.btnPrevFrm.UseVisualStyleBackColor = true;
             this.btnPrevFrm.Click += new System.EventHandler(this.btnPrevFrm_Click);
             // 
-            // requiredAddTeacher
-            // 
-            this.requiredAddTeacher.CancelFocusChangeWhenInvalid = false;
-            this.requiredAddTeacher.ControlToValidate = this.txtAddTeacher;
-            this.requiredAddTeacher.ErrorMessage = "لطفا نام استاد را وارد کنید.";
-            this.requiredAddTeacher.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredAddTeacher.Icon")));
-            // 
-            // requiredEditTeacherId
-            // 
-            this.requiredEditTeacherId.CancelFocusChangeWhenInvalid = false;
-            this.requiredEditTeacherId.ControlToValidate = this.txtEditTeacherID;
-            this.requiredEditTeacherId.ErrorMessage = "لطفا شناسه استاد را وارد کنید.";
-            this.requiredEditTeacherId.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredEditTeacherId.Icon")));
-            // 
-            // requiredEditTeacherName
-            // 
-            this.requiredEditTeacherName.CancelFocusChangeWhenInvalid = false;
-            this.requiredEditTeacherName.ControlToValidate = this.txtEditTeacherName;
-            this.requiredEditTeacherName.ErrorMessage = "لطفا نام استاد را وارد کنید.";
-            this.requiredEditTeacherName.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredEditTeacherName.Icon")));
-            // 
-            // requiredDeleteTeacherID
-            // 
-            this.requiredDeleteTeacherID.CancelFocusChangeWhenInvalid = false;
-            this.requiredDeleteTeacherID.ControlToValidate = this.txtDeleteTeacherID;
-            this.requiredDeleteTeacherID.ErrorMessage = null;
-            this.requiredDeleteTeacherID.Icon = ((System.Drawing.Icon)(resources.GetObject("requiredDeleteTeacherID.Icon")));
-            // 
             // frmTeacherActions
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 17F);
@@ -278,9 +244,5 @@
         private System.Windows.Forms.TextBox txtDeleteTeacherID;
         private System.Windows.Forms.Button btnShowTeacher;
         private System.Windows.Forms.Button btnPrevFrm;
-        private ValidationComponents.RequiredFieldValidator requiredAddTeacher;
-        private ValidationComponents.RequiredFieldValidator requiredEditTeacherId;
-        private ValidationComponents.RequiredFieldValidator requiredEditTeacherName;
-        private ValidationComponents.RequiredFieldValidator requiredDeleteTeacherID;
     }
 }
