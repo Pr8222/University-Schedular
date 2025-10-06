@@ -274,3 +274,4 @@ __pycache__/
 # End of https://www.toptal.com/developers/gitignore/api/aspnetcore
 /University Schedular/Schedular.App/App.config
 /University Schedular/Schedular.DataLayer/App.Config
+/University Schedular/Schedular.App/App.config
