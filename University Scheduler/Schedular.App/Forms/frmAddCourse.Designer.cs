@@ -297,6 +297,7 @@
             // 
             // dgvSuggestedSchdules
             // 
+            this.dgvSuggestedSchdules.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.ColumnHeader;
             this.dgvSuggestedSchdules.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSuggestedSchdules.Location = new System.Drawing.Point(12, 175);
             this.dgvSuggestedSchdules.Name = "dgvSuggestedSchdules";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherActions));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnAddTeacher = new System.Windows.Forms.Button();
             this.txtAddTeacher = new System.Windows.Forms.TextBox();
@@ -213,6 +214,7 @@
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTeacherActions";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "عملیات مربوط به اساتید";

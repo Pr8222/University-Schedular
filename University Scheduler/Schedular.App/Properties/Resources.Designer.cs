@@ -101,6 +101,16 @@ namespace Schedular.App.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
+        internal static System.Drawing.Icon islamic_azad_university_science_and_research_branch_afm {
+            get {
+                object obj = ResourceManager.GetObject("islamic_azad_university_science_and_research_branch_afm", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap refresh_shedule {

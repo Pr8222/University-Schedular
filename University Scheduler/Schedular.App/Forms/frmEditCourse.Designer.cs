@@ -30,6 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditCourse));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTeacherName = new System.Windows.Forms.ComboBox();
+            this.txtUnits = new System.Windows.Forms.Label();
+            this.txtCourseTiltle = new System.Windows.Forms.ComboBox();
             this.txtEndTime = new System.Windows.Forms.MaskedTextBox();
             this.txtStartTime = new System.Windows.Forms.MaskedTextBox();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -50,9 +53,6 @@
             this.lableID = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.txtCourseTiltle = new System.Windows.Forms.ComboBox();
-            this.txtUnits = new System.Windows.Forms.Label();
-            this.txtTeacherName = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -86,6 +86,31 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "اطلاعات کلاس";
+            // 
+            // txtTeacherName
+            // 
+            this.txtTeacherName.FormattingEnabled = true;
+            this.txtTeacherName.Location = new System.Drawing.Point(236, 184);
+            this.txtTeacherName.Name = "txtTeacherName";
+            this.txtTeacherName.Size = new System.Drawing.Size(121, 25);
+            this.txtTeacherName.TabIndex = 27;
+            // 
+            // txtUnits
+            // 
+            this.txtUnits.AutoSize = true;
+            this.txtUnits.Location = new System.Drawing.Point(318, 134);
+            this.txtUnits.Name = "txtUnits";
+            this.txtUnits.Size = new System.Drawing.Size(0, 17);
+            this.txtUnits.TabIndex = 26;
+            // 
+            // txtCourseTiltle
+            // 
+            this.txtCourseTiltle.FormattingEnabled = true;
+            this.txtCourseTiltle.Location = new System.Drawing.Point(236, 83);
+            this.txtCourseTiltle.Name = "txtCourseTiltle";
+            this.txtCourseTiltle.Size = new System.Drawing.Size(121, 25);
+            this.txtCourseTiltle.TabIndex = 25;
+            this.txtCourseTiltle.SelectedIndexChanged += new System.EventHandler(this.txtCourseTiltle_SelectedIndexChanged);
             // 
             // txtEndTime
             // 
@@ -256,31 +281,6 @@
             this.label1.Size = new System.Drawing.Size(96, 17);
             this.label1.TabIndex = 0;
             this.label1.Text = "شناسه کلاس:";
-            // 
-            // txtCourseTiltle
-            // 
-            this.txtCourseTiltle.FormattingEnabled = true;
-            this.txtCourseTiltle.Location = new System.Drawing.Point(236, 83);
-            this.txtCourseTiltle.Name = "txtCourseTiltle";
-            this.txtCourseTiltle.Size = new System.Drawing.Size(121, 25);
-            this.txtCourseTiltle.TabIndex = 25;
-            this.txtCourseTiltle.SelectedIndexChanged += new System.EventHandler(this.txtCourseTiltle_SelectedIndexChanged);
-            // 
-            // txtUnits
-            // 
-            this.txtUnits.AutoSize = true;
-            this.txtUnits.Location = new System.Drawing.Point(318, 134);
-            this.txtUnits.Name = "txtUnits";
-            this.txtUnits.Size = new System.Drawing.Size(0, 17);
-            this.txtUnits.TabIndex = 26;
-            // 
-            // txtTeacherName
-            // 
-            this.txtTeacherName.FormattingEnabled = true;
-            this.txtTeacherName.Location = new System.Drawing.Point(236, 184);
-            this.txtTeacherName.Name = "txtTeacherName";
-            this.txtTeacherName.Size = new System.Drawing.Size(121, 25);
-            this.txtTeacherName.TabIndex = 27;
             // 
             // frmEditCourse
             // 

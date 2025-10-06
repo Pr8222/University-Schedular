@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmCourseList));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
@@ -47,21 +48,21 @@
             this.txtSearch});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(382, 31);
+            this.toolStrip1.Size = new System.Drawing.Size(382, 27);
             this.toolStrip1.TabIndex = 1;
             this.toolStrip1.Text = "toolStrip1";
             // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(56, 28);
+            this.toolStripLabel1.Size = new System.Drawing.Size(56, 24);
             this.toolStripLabel1.Text = "جستجو:";
             // 
             // txtSearch
             // 
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(150, 31);
+            this.txtSearch.Size = new System.Drawing.Size(150, 27);
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // dgvCourse
@@ -74,11 +75,11 @@
             this.Column2,
             this.Column3});
             this.dgvCourse.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvCourse.Location = new System.Drawing.Point(0, 31);
+            this.dgvCourse.Location = new System.Drawing.Point(0, 27);
             this.dgvCourse.Name = "dgvCourse";
             this.dgvCourse.RowHeadersWidth = 51;
             this.dgvCourse.RowTemplate.Height = 24;
-            this.dgvCourse.Size = new System.Drawing.Size(382, 422);
+            this.dgvCourse.Size = new System.Drawing.Size(382, 426);
             this.dgvCourse.TabIndex = 2;
             // 
             // Column1
@@ -111,6 +112,7 @@
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmCourseList";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "لیست واحدها";

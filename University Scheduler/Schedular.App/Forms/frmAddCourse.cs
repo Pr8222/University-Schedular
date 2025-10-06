@@ -3,6 +3,7 @@ using Schedular.Utilities;
 using Schedular.ViewModels;
 using System;
 using System.Configuration;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ValidationComponents;
 
@@ -71,25 +72,35 @@ namespace Schedular.App.Forms
                     if (paramForm.ShowDialog() == DialogResult.OK)
                     {
                         var currentSchedules = service.GetAllCourseSchedules();
-
-                        var suggestions = await aiService.SuggestSchedulesAsync(
-                            currentSchedules,
-                            txtTeacherName.Text,
-                            txtCourseTitle.Text,
-                            int.Parse(txtClassGroup.Text),
-                            paramForm.classCount,
-                            paramForm.distributionType
-                        );
-                        foreach (var s in suggestions)
+                        using (var loadingForm = new frmLoading())
                         {
-                            s.Term = txtTerm.Text;
-                            s.Units = int.Parse(txtUnits.Text);
-                            s.Capacity = int.Parse(txtCapacity.Text);
-                        }
+                            var loadingTask = Task.Run(() => loadingForm.ShowDialog());
+                            try
+                            {
+                                var suggestions = await aiService.SuggestSchedulesAsync(
+                                    currentSchedules,
+                                    txtTeacherName.Text,
+                                    txtCourseTitle.Text,
+                                    int.Parse(txtClassGroup.Text),
+                                    paramForm.classCount,
+                                    paramForm.distributionType
+                                );
+                                foreach (var s in suggestions)
+                                {
+                                    s.Term = txtTerm.Text;
+                                    s.Units = int.Parse(txtUnits.Text);
+                                    s.Capacity = int.Parse(txtCapacity.Text);
+                                }
 
-                        dgvSuggestedSchdules.AutoGenerateColumns = true;
-                        dgvSuggestedSchdules.DataSource = null;
-                        dgvSuggestedSchdules.DataSource = suggestions;
+                                dgvSuggestedSchdules.AutoGenerateColumns = true;
+                                dgvSuggestedSchdules.DataSource = null;
+                                dgvSuggestedSchdules.DataSource = suggestions;
+                            }
+                            finally
+                            {
+                                loadingForm.Invoke(new Action(() => loadingForm.Close()));
+                            }
+                        }
                     }
                 }
             }

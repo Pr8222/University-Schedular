@@ -178,7 +178,7 @@
             // 
             this.txtSearch.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(150, 27);
+            this.txtSearch.Size = new System.Drawing.Size(150, 77);
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // dgvSchedules

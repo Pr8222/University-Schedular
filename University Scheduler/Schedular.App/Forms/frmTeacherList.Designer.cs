@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmTeacherList));
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.txtSearch = new System.Windows.Forms.ToolStripTextBox();
@@ -53,7 +54,7 @@
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(56, 28);
+            this.toolStripLabel1.Size = new System.Drawing.Size(56, 24);
             this.toolStripLabel1.Text = "جستجو:";
             // 
             // txtSearch
@@ -101,6 +102,7 @@
             this.Controls.Add(this.dgvTeacher);
             this.Controls.Add(this.toolStrip1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmTeacherList";
             this.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.Text = "لیست اساتید";
