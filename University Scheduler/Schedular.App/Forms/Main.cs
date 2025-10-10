@@ -220,17 +220,13 @@ namespace Schedular.App.Forms
         private void btnUnitsActions_Click(object sender, EventArgs e)
         {
             frmClassActions classActions = new frmClassActions();
-            this.Hide();
             classActions.ShowDialog();
-            this.Show();
         }
 
         private void btnTeacherActions_Click(object sender, EventArgs e)
         {
             frmTeacherActions teacherActions = new frmTeacherActions();
-            this.Hide();
             teacherActions.ShowDialog();
-            this.Show();
         }
     }
 }

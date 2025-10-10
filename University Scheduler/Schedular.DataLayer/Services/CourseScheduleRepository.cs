@@ -93,7 +93,6 @@ namespace Schedular.DataLayer.Services
                 .Where(cs => cs.Course.Title.Contains(parameter) ||
             cs.Teacher.FullName.Contains(parameter) ||
             cs.Term.Contains(parameter) ||
-            cs.ClassGroup == int.Parse(parameter) ||
             cs.DayOfWeek.Contains(parameter)).ToList();
         }
 
